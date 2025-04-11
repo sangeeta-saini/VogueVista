@@ -1,0 +1,88 @@
+.card-container{
+    display: flex;
+  }
+  .parent{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 30px;
+    margin-left: 40px;
+    margin-top: 10px;
+    
+  }
+  
+  
+  
+  .all-cards{
+    height: 350px;
+    width: 270px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 2vh;
+    /* display: flex;
+    justify-content:space-around ;
+    flex-wrap: wrap; */
+    background-color: rgb(248, 248, 248);
+  }
+  
+  .wishlist-icon{
+    
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    padding: 5px 8px 0 0 ;
+  }
+  
+  .card-img-top{
+    height: 60%;
+    width: 100%;
+    
+    overflow: hidden;
+   
+  }
+  
+  .card-title{
+    font-size: 15px;
+    padding-left: 20px;
+  }
+  
+  
+  
+  .description{
+    width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 13px; 
+   
+    padding: 5px 0 5px 20px;
+  }
+  
+  
+  
+  .price-btn{
+   text-decoration: none;
+    color:black;
+    font-size: 16px;
+   margin-left: 120px;
+  }
+  
+  .add-bag-btn{
+    height: 35px;
+    width: 90%;
+    margin-left: 15px;
+    color: white;
+    background-color: black;
+    border: none;
+    border-bottom-left-radius:5px;
+    border-bottom-right-radius:5px;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease , visibility 0.3s ease;
+  }
+  
+  .all-cards:hover .add-bag-btn {
+    opacity: 1;
+    visibility: visible;
+  }

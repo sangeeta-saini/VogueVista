@@ -1,0 +1,19 @@
+.container-3{
+    height: 370px;
+    width: 500px;
+    display: block;
+    align-items: center;
+    background-color: rgb(242, 243, 243);
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: PP Object sans, sans-serif;
+}
+
+.input-container-2{
+
+    margin: 30px 30px 30px 30px;
+
+    
+}

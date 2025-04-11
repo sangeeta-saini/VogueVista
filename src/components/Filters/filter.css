@@ -1,0 +1,56 @@
+.filter-container{
+    flex: 0 0 280px;
+    max-width: 280px;
+    margin-top: 8px;
+    background-color: rgb(247, 247, 247);
+}
+
+.heading{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    text-transform: capitalize;
+    padding: 20px 20px 5px 20px;
+    border-right: 1px solid hsl(0, 1%, 84%);
+    border-top: 1px solid hsl(0, 1%, 84%);
+    
+}
+
+.main-box{
+    border-bottom: 1px solid hsl(0, 1%, 84%);
+    border-right: 1px solid hsl(0, 1%, 84%);
+    padding: 20px;
+    
+}
+
+.box-1{
+    font-size: 13px;
+    letter-spacing: .3px;
+    padding: 7px 7px 7px 0;
+    
+}
+
+.box-1-data{
+    display: block;
+    width: fit-content(100%);
+      height: fit-content(100%);
+      line-height: 30px;
+      
+     
+}
+
+label{
+    padding-left: 8px;
+    cursor: pointer;
+}
+
+
+input[type="radio"] {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+}
+    
+  
+  

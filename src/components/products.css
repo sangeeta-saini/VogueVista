@@ -1,0 +1,8 @@
+.products-Container{
+    display: grid;
+    grid-template-columns: 0.2fr 1fr;
+    margin-top: 10px;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(230, 231, 231);
+}
