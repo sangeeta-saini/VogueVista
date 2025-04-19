@@ -1,9 +1,9 @@
 import React from 'react'
 import { useContext } from 'react';
-import ProductList from './ProductList';
-import FilterSection from './Filters/FilterSection';
-import Sort from './Sort';
-import { DataContext } from './DataContext.jsx';
+import ProductList from '../ProductList.jsx';
+import FilterSection from '../Filters/FilterSection.jsx';
+import Sort from '../Sort.jsx';
+import { DataContext } from '../DataContext.jsx';
 import './products.css'
 
 

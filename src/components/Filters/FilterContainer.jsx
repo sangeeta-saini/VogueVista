@@ -1,7 +1,9 @@
-import React from 'react'
+import React , { useState }  from 'react'
 import './filter.css'
 
 function FilterContainer({items,handleToggle}) {
+
+  
 
   
 
@@ -23,7 +25,7 @@ function FilterContainer({items,handleToggle}) {
             <label htmlFor={item.value}>{item.display}</label>
           </div>
         )) }
-        
+       
       </div>
     </div>
   

@@ -6,11 +6,17 @@
   }
   
   .nav{
+    
     height: 100px;
     width: 100%;
     background-color: rgb(234, 237, 237);
     display: flex;
     justify-content: space-around;
+    position: fixed;
+    right: 0;
+    top: 0;
+    left: 0;
+    z-index: 0;
     cursor: pointer;
     overflow: hidden;
   }
@@ -63,6 +69,8 @@
   .container-2{
     display: flex;
     justify-content: space-around;
+    /* height: 80px;
+    width: 100px; */
     gap: 35px;
     
   }
@@ -96,4 +104,55 @@
   
   
   
-  
+  /* For screens up to 768px wide */
+@media (max-width: 768px) {
+  .nav {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    padding: 10px 0;
+  }
+
+  .list-items {
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 20px;
+  }
+
+  .search-box {
+    width: 90%;
+    margin-top: 20px;
+  }
+
+  .container-2 {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .sign-up, .user, .list-icon, .bag {
+    padding-top: 20px;
+  }
+}
+
+/* For screens up to 480px wide */
+@media (max-width: 480px) {
+  .search-box {
+    width: 100%;
+  }
+
+  .list-items {
+    font-size: 14px;
+    gap: 15px;
+    position: relative;
+  }
+
+  .sign-up {
+    font-size: 16px;
+  }
+
+  .user, .list-icon, .bag {
+    height: 24px;
+    width: 24px;
+  }
+}

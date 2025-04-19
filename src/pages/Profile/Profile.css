@@ -1,0 +1,172 @@
+.profile-container-1{
+    min-height: 600px;
+    max-width: 850px;
+    background-color: white;
+    /* margin: 50px 300px; */
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.page-heading{
+    border-bottom: 1px solid #d4d5d9;
+    padding: 15px 20px;
+    font-size: 25px;
+    font-weight: bold;
+    
+}
+.page-container{
+     display: flex;  
+ 
+}
+
+
+
+.sidebar{
+    vertical-align: top;
+    text-align: left;
+    /* padding: 0px 20px 0px 0px; */
+    font-size: 15px;
+    width: 170px;
+    height: 500px;
+    background-color: white;
+    border-right: 1px solid #d4d5d9;
+    margin:  7px 10px;
+}
+
+.orders{
+   
+    padding: 30px 30px;
+    height: 100px;
+    width: 145px;
+    font-size: 18px;
+    border-bottom: 1px solid #d4d5d9;
+   
+    /* display: flex;
+    justify-content: center; */
+}
+
+.profile-container{
+    border: 1px solid #d4d5d9;
+    height: 500px;
+    width: 600px;
+    padding: 30px 100px;
+    margin: 10px 0px;
+}
+
+.profile-heading{
+    border-bottom: 1px solid #d4d5d9;
+    padding: 0 15px 15px 15px ;
+    margin: 10px;
+}
+
+.profile-data{
+    margin: 15px 0;
+    padding: 0 15px;
+}
+
+.profile-info td{
+   width: 200px;
+   line-height: 40px;
+   padding-right: 10px;
+   cursor: pointer;
+}
+
+.profile-edit-btn{
+    cursor: pointer;
+    text-transform: uppercase;
+    padding: 15px;
+    text-align: center;
+    font-weight: 800;
+    background-color: #FF3F6C;
+    margin: 30px 0px;
+    color: white;
+    border-radius: 5px;
+    width: 370px;
+}
+
+/* edits */
+/* .profile-container-2{
+    min-height: 800px;
+    max-width: 850px;
+    background-color: rgb(245, 245, 245); */
+    /* margin: 50px 300px; */
+   
+
+.profile-container-3{
+    border: 1px solid #d4d5d9;
+    height: 610px;
+    width: 550px;
+    padding: 10px 10px;
+    margin: 10px 20px;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+.profile-containter-4{
+    height: 540px;
+    padding: 10px 20px;
+}
+
+.edit-title{
+    line-height: 10px;
+    font-size: 16px;
+    padding: 6px ;
+    margin-left: 55px;
+}
+
+.edit-input{
+    line-height: 8px;
+    padding: 10px;
+    width: 80%;
+    line-height: 10px;
+    margin: 10px 10px 10px 50px;
+}
+
+
+.gender-box{
+    display: flex;
+  
+  margin-bottom: 10px ;
+  font-size: 16px;
+  font-weight: 600;
+  
+}
+
+.gender-edit{
+    margin-left: 50px ;
+    padding-left: 10px;
+    height: 40px;
+  width: 170px;
+  border: 1px solid rgb(128, 127, 127);
+  border-radius: 3px;
+}
+ 
+.edit-input-1{
+   margin: 10px;
+}
+
+.saveedit-btn{
+    margin: 10px 10px 10px 50px;
+    width: 390px;
+    background-color: #FF3F6C;
+}
+
+@media only screen and (max-width:780px){
+    .sidebar{
+        display: inline-block;
+    }
+
+    .page-heading{
+        display: block;
+    }
+
+    .profile-container{
+        padding: 42px 130px;
+        border: 1px solid #d4d4d9;
+    }
+}
