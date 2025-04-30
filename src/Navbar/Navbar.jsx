@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./NavBar.css";
 import SearchBar from "./SearchBar.jsx";
 
 function Navbar() {
+  useEffect(() => {
+    console.log("------ navbar");
+  }, []);
+
   return (
     <nav>
       <div className="nav">

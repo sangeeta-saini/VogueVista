@@ -19,27 +19,19 @@ function Login() {
         password,
       });
 
-      const userId = response.data.userId;
+      const userId = res.data._id;
 
-      localStorage.setItem("userId", userId);
-      alert("Login successful!");
+      localStorage.setItem("user_id", userId);
 
-      console.log(res.data);
-      if (res.data.success) {
-        navigate("/"); // Navigate to home on success
-      } else {
-        setError({
-          general: res.data.message || "Login failed. Please try again.",
-        });
-      }
+      navigate("/"); // Navigate to home on success
     } catch (err) {
       if (err.response && err.response.data.message) {
         const msg = err.response.data.message;
         // Update error state based on the message from the server
-        if (msg === "User not found") {
-          setError({ email: "User not found." });
-        } else if (msg === "Incorrect password") {
-          setError({ password: "Password is incorrect." });
+        if (msg.email) {
+          setError({ email: msg.email });
+        } else if (msg.password) {
+          setError({ password: msg.password });
         } else {
           setError({ general: msg });
         }
