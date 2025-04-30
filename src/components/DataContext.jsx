@@ -8,35 +8,35 @@ export const DataProvider = ({ children }) => {
   const [data, setData] = useState(null);
   // const [loading, setLoading] = useState(true);
   // const [error, setError] = useState(null);
+  async function fetchData(query = {}) {
+    const { category, price_range, brand } = query;
+    let queryString = "";
+    if (category) {
+      queryString = `category=${category}&`;
+    }
+    if (price_range) {
+      queryString = `price_range=${price_range}&`;
+    }
+    if (brand) {
+      queryString = `brand=${brand}`;
+    }
+    const response = await axios.get(
+      `http://localhost:8080/products?${queryString}`
+    );
+
+    setData(response.data.items);
+    console.log(response.data);
+  }
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await axios.get("http://localhost:8080/products");
-
-      setData(response.data.items);
-      console.log(response.data);
-    }
-    // const fetchData = async () => {
-    //   try {
-    //     const response = await fetch('https://dummyjson.com/products');
-    //     if (!response.ok) {
-    //       throw new Error('Network response was not ok');
-    //     }
-    //     const result = await response.json();
-    //     setData(result);
-    //   } catch (err) {
-    //     setError(err);
-    //   } finally {
-    //     setLoading(false);
-    //   }
-    // };
-
     fetchData();
   }, []);
 
   return (
     <>
-      <DataContext.Provider value={{ data }}>{children}</DataContext.Provider>
+      <DataContext.Provider value={{ data, fetchData }}>
+        {children}
+      </DataContext.Provider>
       {/* <div className="parent">{show}</div>; */}
     </>
   );

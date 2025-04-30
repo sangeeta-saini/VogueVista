@@ -9,7 +9,13 @@ const BagPage = () => {
   // Fetch wishlist items from backend
   const fetchBag = async () => {
     try {
-      const res = await axios.get("http://localhost:8080/cart/addtobag");
+      const userId = localStorage.getItem("user_id");
+
+      const res = await axios.get("http://localhost:8080/cart/", {
+        headers: {
+          user_id: userId,
+        },
+      });
       setBagItems(res.data.items || []);
     } catch (err) {
       console.error("Error fetching wishlist:", err);
@@ -21,9 +27,19 @@ const BagPage = () => {
   const updateQty = async (productId, newQty) => {
     if (newQty < 1) return;
     try {
-      await axios.put(`http://localhost:8080/cart/cart/${productId}`, {
-        quantity: newQty,
-      });
+      const userId = localStorage.getItem("user_id");
+
+      await axios.put(
+        `http://localhost:8080/cart/${productId}`,
+        {
+          quantity: newQty,
+        },
+        {
+          headers: {
+            user_id: userId,
+          },
+        }
+      );
       setBagItems((prev) =>
         prev.map((item) =>
           item.productId === productId ? { ...item, quantity: newQty } : item
@@ -58,14 +74,14 @@ const BagPage = () => {
             <div className="cart-items">
               {bagItems.map((res) => (
                 <div key={res.productId} className="cart-item">
-                  <img className="cart-img" src={res.image} />
+                  <img className="cart-img" src={res.images[0]} />
                   <div>
                     <h2 className="cart-name">{res.name}</h2>
                     <p className="cart-price">₹{res.price.toFixed(2)}</p>
 
                     <QuantityInput
                       quantity={res.quantity}
-                      onChange={(newQty) => updateQty(res.productId, newQty)}
+                      onChange={(newQty) => updateQty(res._id, newQty)}
                     />
 
                     {/* <div className="quentity-btn">

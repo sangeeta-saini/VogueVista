@@ -9,7 +9,7 @@ import AddToBagButton from "../../pages/Cart/AddToBagButton.jsx";
 import WishlistButton from "../../pages/Wishlist/WishListButton.jsx";
 
 const Products = ({ userId, product }) => {
-  const { data, loading, error } = useContext(DataContext);
+  const { data, loading, error, fetchData } = useContext(DataContext);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
@@ -17,7 +17,7 @@ const Products = ({ userId, product }) => {
   return (
     <>
       <div className="products-Container">
-        <FilterSection />
+        <FilterSection fetchData={fetchData} />
 
         <section>
           <div className="parent">

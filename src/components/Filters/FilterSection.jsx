@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import FilterContainer from "./FilterContainer";
 
-function FilterSection() {
+function FilterSection({ fetchData }) {
   const products = [{}];
 
   const filter = [
@@ -83,7 +83,7 @@ function FilterSection() {
   ]);
   const categories = ["Women", "Men", "Kids", "Beauty"];
 
-  const handleCategoryToggle = (e) => {
+  const handleCategoryToggle = async (e) => {
     const value = e.target.value;
     console.log(value);
     setSelectedCategories((prevCategories) =>
@@ -92,6 +92,8 @@ function FilterSection() {
         isSelected: category.value === value,
       }))
     );
+
+    await fetchData({ category: value });
   };
 
   const [selectedPrices, setSelectedPrices] = useState([
@@ -124,7 +126,7 @@ function FilterSection() {
     { id: "p8", label: "800-1000", value: "800-1000" },
   ];
 
-  const handlePriceToggle = (e) => {
+  const handlePriceToggle = async (e) => {
     const value = e.target.value;
     console.log(value);
     setSelectedPrices((prevPrices) =>
@@ -133,6 +135,7 @@ function FilterSection() {
         isSelected: price.value === value,
       }))
     );
+    await fetchData({ price_range: value });
   };
 
   const [selectedBrand, setSelectedBrand] = useState([

@@ -6,11 +6,15 @@ const WishlistButton = ({ userId, product }) => {
 
   const toggleWishlist = async () => {
     try {
-      if (isWishlisted) {
-        await axios.delete(`http://localhost:8080/wishlist/${product._id}`);
-      } else {
-        const userId = localStorage.getItem("user_id");
+      const userId = localStorage.getItem("user_id");
 
+      if (isWishlisted) {
+        await axios.delete(`http://localhost:8080/wishlist/${product._id}`, {
+          headers: {
+            user_id: userId,
+          },
+        });
+      } else {
         await axios.post(
           `http://localhost:8080/wishlist`,
           {

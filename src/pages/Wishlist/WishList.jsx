@@ -82,7 +82,10 @@ const WishlistPage = () => {
               />
               <h3 className="wish-title">{item.name}</h3>
               <p className="wish-price">₹{item.price}</p>
-              <button className="wish-move" onClick={handleAddToBag}>
+              <button
+                className="wish-move"
+                onClick={() => handleAddToBag(item)}
+              >
                 Move To Bag
               </button>
             </div>
