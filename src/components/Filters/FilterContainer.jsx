@@ -1,7 +1,7 @@
 import React , { useState }  from 'react'
 import './filter.css'
 
-function FilterContainer({items,handleToggle}) {
+function FilterContainer({title,items,handleToggle}) {
 
   
 
@@ -10,7 +10,7 @@ function FilterContainer({items,handleToggle}) {
   return (
     
       <div className='main-box'>
-      <h3 className='box-1'>Category</h3>
+      <h3 className='box-1'>{title}</h3>
       <div className='box-1-data'>
         {items.map((item) => (
           <div key={item.value}>

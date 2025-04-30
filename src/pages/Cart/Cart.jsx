@@ -1,118 +1,117 @@
-
-import './Cart.css'
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-
-const BagPage = ({ userId }) => {
+import "./Cart.css";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import QuantityInput from "./QuantityInput";
+const BagPage = () => {
   const [bagItems, setBagItems] = useState([]);
-  const [loading, setLoading]   = useState(true);
+  const [loading, setLoading] = useState(true);
 
-  
+  // Fetch wishlist items from backend
   const fetchBag = async () => {
     try {
-      const res = await axios.get(`http://localhost:8080/cart/${userId}`);
+      const res = await axios.get("http://localhost:8080/cart/addtobag");
       setBagItems(res.data.items || []);
     } catch (err) {
-      console.error('Error fetching bag:', err);
+      console.error("Error fetching wishlist:", err);
     } finally {
-      setLoading(false);
+      setLoading(false); // ✅ This is missing
     }
   };
 
-  
-  const removeItem = async (productId) => {
-    try {
-      await axios.delete(`http://localhost:8080/cart/${userId}/${productId}`);
-      setBagItems(prev => prev.filter(item => item.productId !== productId));
-    } catch (err) {
-      console.error('Error removing from bag:', err);
-    }
-  };
-
-  
   const updateQty = async (productId, newQty) => {
     if (newQty < 1) return;
     try {
-      await axios.put(`http://localhost:8080/cart/${userId}/${productId}`, { quantity: newQty });
-      setBagItems(prev =>
-        prev.map(item =>
+      await axios.put(`http://localhost:8080/cart/cart/${productId}`, {
+        quantity: newQty,
+      });
+      setBagItems((prev) =>
+        prev.map((item) =>
           item.productId === productId ? { ...item, quantity: newQty } : item
         )
       );
     } catch (err) {
-      console.error('Error updating quantity:', err);
+      console.error("Error updating quantity:", err);
     }
   };
 
   useEffect(() => {
     fetchBag();
-  }, [userId]);
+  }, []);
 
-  if (loading) return <div >Loading your bag…</div>;
+  if (loading) return <div>Loading your bag…</div>;
 
   // Cart total
-  const total = bagItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const total = bagItems.reduce(
+    (sum, res) => sum + res.price * res.quantity,
+    0
+  );
 
   return (
-    <div  className='cart-container'>
-      <h1 >Your Bag</h1>
+    <div className="cart-container">
+      <h1 className="cart-head">Your Bag</h1>
 
       {bagItems.length === 0 ? (
-        <p >Your bag is empty.</p>
+        <p>Your bag is empty.</p>
       ) : (
         <>
-          <div >
-            {bagItems.map(item => (
-              <div
-                key={item.productId}
-                
-              >
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  
-                />
-                <div >
-                  <h2 >{item.name}</h2>
-                  <p >₹{item.price.toFixed(2)}</p>
-                  <div >
-                    <button
-                      onClick={() => updateQty(item.productId, item.quantity - 1)}
-                      
-                    >−</button>
-                    <span>{item.quantity}</span>
-                    <button
-                      onClick={() => updateQty(item.productId, item.quantity + 1)}
-                      
-                    >+</button>
-                  </div>
-                </div>
-                <div >
-                  <p >
-                    ${(item.price * item.quantity).toFixed(2)}
-                  </p>
-                  <button
-                    onClick={() => removeItem(item.productId)}
-                    
-                  >
-                    Remove
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
+          <div className="cart-section">
+            <div className="cart-items">
+              {bagItems.map((res) => (
+                <div key={res.productId} className="cart-item">
+                  <img className="cart-img" src={res.image} />
+                  <div>
+                    <h2 className="cart-name">{res.name}</h2>
+                    <p className="cart-price">₹{res.price.toFixed(2)}</p>
 
-         
-          <div >
-            <p >
-              Total: <span >${total.toFixed(2)}</span>
-            </p>
-            <button
-              onClick={() => alert('Proceeding to checkout…')}
-              
-            >
-              Proceed to Checkout
-            </button>
+                    <QuantityInput
+                      quantity={res.quantity}
+                      onChange={(newQty) => updateQty(res.productId, newQty)}
+                    />
+
+                    {/* <div className="quentity-btn">
+                      <button
+                        onClick={() =>
+                          updateQty(res.productId, res.quantity - 1)
+                        }
+                        className="cart-minus"
+                      >
+                        −
+                      </button>
+                      <span>{res.quantity}</span>
+                      <button
+                        onClick={() =>
+                          updateQty(res.productId, res.quantity + 1)
+                        }
+                        className="cart-plus"
+                      >
+                        +
+                      </button>
+                    </div> */}
+                  </div>
+                  {/* <div>
+                    <p>₹{(res.price * res.quantity).toFixed(2)}</p>
+                  </div> */}
+                </div>
+              ))}
+            </div>
+
+            <div className="payment">
+              <p className="price">Price Details</p>
+
+              <p className="cart-total">
+                <div className="cart-mrp">
+                  Total MRP <span className="rate"> ₹{total.toFixed(1)}</span>
+                </div>
+                <p className="tax">Inclusive Of All Taxes</p>
+              </p>
+
+              <button
+                className="procced-btn"
+                onClick={() => alert("Proceeding to checkout…")}
+              >
+                Proceed to Checkout
+              </button>
+            </div>
           </div>
         </>
       )}
@@ -121,3 +120,21 @@ const BagPage = ({ userId }) => {
 };
 
 export default BagPage;
+
+// const [bagItems, setBagItems] = useState([]);
+// ;
+
+// const fetchBag = async () => {
+//   try {
+//     const res = await axios.get(`http://localhost:8080/bag/cart`);
+//     setBagItems(res.data.items || []);
+//   } catch (err) {
+//     console.error('Error fetching bag:', err);
+//   } finally {
+//     setLoading(false);
+//   }
+// };
+
+// useEffect(() => {
+//   fetchBag();
+// }, []);

@@ -1,3 +1,143 @@
-.cart-container{
-    margin-top: 110px;
+.cart-container {
+  margin-top: 120px;
+  background-color: rgb(244, 244, 244);
+  height: 800px;
+  width: 100%;
+}
+
+.cart-head {
+  padding: 20px;
+  border-bottom: 1px solid rgb(213, 213, 213);
+  font-weight: 600;
+  font-size: 25px;
+  margin: 0px 130px;
+}
+
+.cart-section {
+  max-width: 1200px;
+  display: flex;
+  margin: auto;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.cart-items {
+  width: 70%;
+  overflow: hidden;
+  border-radius: 18px;
+  border: 1px solid rgb(224, 224, 224);
+}
+
+.cart-item {
+  display: flex;
+  height: 130px;
+  padding: 20px 20px 20px 0px;
+  background-color: #fff;
+  /* box-sizing: border-box;  */
+
+  font-weight: 600;
+}
+
+.cart-img {
+  height: 100px;
+  width: 130px;
+
+  overflow: hidden;
+}
+
+.cart-name {
+  font-size: 16px;
+  padding: 0 0 5px 20px;
+  font-weight: 600;
+}
+
+.cart-price {
+  padding-left: 20px;
+
+  margin: 5px;
+  font-weight: 600;
+}
+
+.quentity-btn {
+  display: flex;
+  border: 1px solid rgb(228, 228, 228);
+  height: 40px;
+  width: 100px;
+  border-radius: 18px;
+  margin-left: 20px;
+}
+.cart-minus {
+  border: none;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  border-radius: 18px;
+}
+
+.cart-plus {
+  border: none;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  border-radius: 18px;
+}
+
+.payment {
+  /* display: flex; */
+  width: 30%;
+
+  background-color: white;
+  border-radius: 18px;
+}
+
+.price {
+  padding-left: 20px;
+  border-bottom: 1px solid rgb(221, 221, 221);
+  margin: 10px;
+  font-weight: 600;
+}
+
+.cart-total {
+  color: black;
+  padding: 20px;
+  width: 100%;
+}
+
+.cart-mrp {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* .rate {
+  color: black;
+  margin-left: 180px;
+} */
+
+.tax {
+  font-size: 15px;
+  padding: 0;
+  color: rgb(164, 164, 164);
+}
+
+.procced-btn {
+  width: 90%;
+  line-height: 40px;
+  margin: 18px;
+  color: white;
+  background-color: #ff3f6c;
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.quantity-input {
+  border: none;
+  width: 20px;
+  padding: 5px;
 }

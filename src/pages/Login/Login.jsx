@@ -1,52 +1,106 @@
-import React from 'react'
-import './login.css'
-import  { useState } from 'react'
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom';
-
-
+import React, { useState } from "react";
+import "./login.css";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
-
-    const[email , setEmail] = useState();
-  const[password , setPassword] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState({});
   const navigate = useNavigate();
 
-  const handleSubmit = async(e)=>{
-    e.preventDefault()
-    console.log("result")
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError({}); // Reset errors before submission
+
     try {
-      const result = await axios.post('http://localhost:8080/user/login', {email, password });
-      console.log(result)
-        if(user.data === "success"){
-        navigate('/')
+      const res = await axios.post("http://localhost:8080/user/login", {
+        email,
+        password,
+      });
+
+      const userId = response.data.userId;
+
+      localStorage.setItem("userId", userId);
+      alert("Login successful!");
+
+      console.log(res.data);
+      if (res.data.success) {
+        navigate("/"); // Navigate to home on success
+      } else {
+        setError({
+          general: res.data.message || "Login failed. Please try again.",
+        });
       }
     } catch (err) {
-      console.log(err);
+      if (err.response && err.response.data.message) {
+        const msg = err.response.data.message;
+        // Update error state based on the message from the server
+        if (msg === "User not found") {
+          setError({ email: "User not found." });
+        } else if (msg === "Incorrect password") {
+          setError({ password: "Password is incorrect." });
+        } else {
+          setError({ general: msg });
+        }
+      } else {
+        setError({ general: "Server error. Please try again later." });
+      }
     }
-  }
+  };
+
+  // Clear error messages when user changes the email or password
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+    setError((prevState) => ({ ...prevState, email: null })); // Clear email error
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+    setError((prevState) => ({ ...prevState, password: null })); // Clear password error
+  };
+
   return (
-    <form >
-        <div className='container-3'>
-      <div className='login'>
-        <h3>LOGIN</h3>
+    <form onSubmit={handleSubmit}>
+      <div className="container-3">
+        <div className="login">
+          <h3>LOGIN</h3>
         </div>
-        <div className='input-container-2'>
-           < div className='email'>
-            <h4>Email</h4>
-            <input className="email-box" type="text" placeholder='Email' onChange={(e)=>setEmail(e.target.value)} />
-            </div>
-            <div className='password'>
-             <h4>Password</h4>
-             <input className="password-box" type="text" placeholder='Password' onChange={(e)=>setPassword(e.target.value)} />
-            </div>
-            <div className='login-btn'>
-            <button onClick={handleSubmit}> Login </button>
-            </div>
-            </div>
-    </div>
+        <div className="input-container-2">
+          <div className="email">
+            <h4 className="login-head">Email</h4>
+            <input
+              className="email-box"
+              type="text"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            {error.email && <div className="error">{error.email}</div>}
+          </div>
+          <div className="password">
+            <h4 className="login-head">Password</h4>
+            <input
+              className="password-box"
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            {error.password && <div className="error">{error.password}</div>}
+          </div>
+
+          {error.general && <div className="error-msg">{error.general}</div>}
+
+          <div className="login-btn">
+            <button className="sign-btn" type="submit">
+              Login
+            </button>
+          </div>
+        </div>
+      </div>
     </form>
-  )
+  );
 }
 
-export default Login
+export default Login;

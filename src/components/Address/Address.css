@@ -1,0 +1,121 @@
+.address-container {
+  height: 660px;
+  width: 500px;
+  display: block;
+  align-items: center;
+  background-color: rgb(246, 246, 246);
+  position: absolute;
+  top: 57%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.address {
+  margin: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #d4d5d9;
+  font-size: 25px;
+  font-weight: 600;
+}
+.address-container-2 {
+  background-color: white;
+  height: 140px;
+  width: 92%;
+  margin: 10px 20px;
+  border-radius: 5px;
+}
+
+.add-name {
+  padding: 8px;
+  margin-left: 10px;
+  font-weight: 600;
+}
+
+.add-input {
+  padding-left: 10px;
+  margin-left: 10px;
+  line-height: 25px;
+  width: 95%;
+  border: 1px solid rgb(225, 224, 224);
+  border-radius: 5px;
+}
+
+.add-container-3 {
+  height: 430px;
+  background-color: white;
+  margin: 10px 20px;
+  border-radius: 5px;
+}
+
+.address-container-4 {
+  display: flex;
+  justify-content: space-around;
+  margin: 10px;
+}
+
+.add-state {
+  padding: 7px;
+  font-weight: 600;
+}
+
+.add-pin {
+  line-height: 24px;
+  width: 190px;
+  padding-left: 8px;
+  border: 1px solid rgb(225, 224, 224);
+  border-radius: 5px;
+  font-weight: 600;
+}
+
+.add {
+  padding: 10px 10px 10px 15px;
+  font-weight: 600;
+}
+
+.add-container-5 {
+  display: flex;
+
+  margin: 5px;
+}
+
+.add-home {
+  padding-right: 10px;
+  margin-left: 10px;
+}
+.add-radio {
+  margin-right: 10px;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.add-btn {
+  line-height: 35px;
+  width: 210px;
+  margin: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  background-color: #ff3f6c;
+  border: none;
+  border-radius: 5px;
+}
+
+.error-message {
+  color: red;
+  background-color: #ffe6e6;
+  padding: 10px;
+  border: 1px solid red;
+  border-radius: 4px;
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+.input-error {
+  color: red;
+  font-size: 13px;
+  margin-top: 4px;
+  margin-left: 15px;
+}

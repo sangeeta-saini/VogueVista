@@ -1,5 +1,5 @@
 .container{
-    height: 570px;
+    height: 560px;
     width: 500px;
     display: block;
     align-items: center;
@@ -19,13 +19,13 @@
     display: flex;
     justify-content: center;
     margin: 20px;
-    padding-top: 15px;
+    /* padding-top: 15px; */
 }
 
 
 .input-container{
 
-    margin: 60px 30px 30px 30px;
+    margin: 20px 30px 30px 30px;
 
     
 }
@@ -37,7 +37,7 @@
    
 }
 
-h4{
+.login-head{
     margin: 10px 10px 10px 13px;
 }
 
@@ -56,9 +56,7 @@ h4{
    
 }
 
-h4{
-    margin: 10px 10px 10px 13px;
-}
+
 
 .email-box{
     padding-left:20px ;
@@ -89,7 +87,7 @@ h4{
 margin: 15px 15px 15px 22px;
 }
 
-button{
+.sign-btn{
     height: 40px;
     width: 400px;
     font-size: 20px;
@@ -102,7 +100,12 @@ button{
 }
 
 
-
+.error {
+    color: red;
+    font-size: 0.8rem;
+    margin-top: 4px;
+    padding-left: 10px;
+  }
 
 
 

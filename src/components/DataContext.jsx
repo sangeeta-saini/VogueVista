@@ -1,22 +1,18 @@
-import React from 'react';
-import { createContext, useState, useEffect } from 'react';
+import React from "react";
+import { createContext, useState, useEffect } from "react";
 import axios from "axios";
 
 export const DataContext = createContext();
 
-
-export const DataProvider = ({children}) => {
+export const DataProvider = ({ children }) => {
   const [data, setData] = useState(null);
   // const [loading, setLoading] = useState(true);
   // const [error, setError] = useState(null);
 
   useEffect(() => {
-    
-
-
     async function fetchData() {
-      const response = await axios.get("https://dummyjson.com/products")
-      
+      const response = await axios.get("https://dummyjson.com/products");
+
       setData(response.data.products);
       console.log(response.data);
     }
@@ -38,15 +34,10 @@ export const DataProvider = ({children}) => {
     fetchData();
   }, []);
 
-  
-  
-
   return (
     <>
-    <DataContext.Provider value={{ data}}>
-      {children}
-    </DataContext.Provider>
-    {/* <div className="parent">{show}</div>; */}
+      <DataContext.Provider value={{ data }}>{children}</DataContext.Provider>
+      {/* <div className="parent">{show}</div>; */}
     </>
   );
 };
