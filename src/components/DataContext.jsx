@@ -11,9 +11,9 @@ export const DataProvider = ({ children }) => {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await axios.get("https://dummyjson.com/products");
+      const response = await axios.get("http://localhost:8080/products");
 
-      setData(response.data.products);
+      setData(response.data.items);
       console.log(response.data);
     }
     // const fetchData = async () => {

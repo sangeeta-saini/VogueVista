@@ -9,7 +9,13 @@ const WishlistPage = () => {
   // Fetch wishlist items from backend
   const fetchWishlist = async () => {
     try {
-      const res = await axios.get("http://localhost:8080/wish/wishlist/list");
+      const userId = localStorage.getItem("user_id");
+
+      const res = await axios.get("http://localhost:8080/wishlist/", {
+        headers: {
+          user_id: userId,
+        },
+      });
       setWishlistItems(res.data.items || []);
     } catch (err) {
       console.error("Error fetching wishlist:", err);
@@ -19,13 +25,23 @@ const WishlistPage = () => {
   const handleAddToBag = async (item) => {
     try {
       // Add to bag/cart
-      await axios.post("http://localhost:8080/cart/add", {
-        productId: item.productId,
-        name: item.name,
-        price: item.price,
-        image: item.image,
-        quantity: 1,
-      });
+      const userId = localStorage.getItem("user_id");
+
+      await axios.post(
+        "http://localhost:8080/cart",
+        {
+          productId: item._id,
+          name: item.name,
+          price: item.price,
+          image: item.image,
+          quantity: 1,
+        },
+        {
+          headers: {
+            user_id: userId,
+          },
+        }
+      );
     } catch (error) {
       console.error("Error moving item to bag:", error);
     }
@@ -59,7 +75,11 @@ const WishlistPage = () => {
               <div className="wish-icon">
                 <WishlistButton className="wish-icon" />
               </div>
-              <img className="wish-img" src={item.image} alt={item.name} />
+              <img
+                className="wish-img"
+                src={item.images && item.images[0]}
+                alt={item.name}
+              />
               <h3 className="wish-title">{item.name}</h3>
               <p className="wish-price">₹{item.price}</p>
               <button className="wish-move" onClick={handleAddToBag}>

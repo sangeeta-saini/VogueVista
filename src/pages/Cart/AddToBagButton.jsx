@@ -10,13 +10,23 @@ const AddToBagButton = ({ userId, product }) => {
     // }
 
     try {
-      await axios.post(`http://localhost:8080/bag/cart/:userId`, {
-        Id: product.Id,
-        title: product.title,
-        price: product.price,
-        image: product.images,
-        quantity: 1,
-      });
+      const userId = localStorage.getItem("user_id");
+
+      await axios.post(
+        `http://localhost:8080/cart/`,
+        {
+          Id: product.Id,
+          title: product.title,
+          price: product.price,
+          image: product.images,
+          quantity: 1,
+        },
+        {
+          headers: {
+            user_id: userId,
+          },
+        }
+      );
       alert(`${product.name} added to bag!`);
     } catch (err) {
       console.error("Error adding to bag:", err);
