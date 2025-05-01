@@ -114,12 +114,12 @@ const BagPage = () => {
             <div className="payment">
               <p className="price">Price Details</p>
 
-              <p className="cart-total">
+              <div className="cart-total">
                 <div className="cart-mrp">
                   Total MRP <span className="rate"> ₹{total.toFixed(1)}</span>
                 </div>
-                <p className="tax">Inclusive Of All Taxes</p>
-              </p>
+                <div className="tax">Inclusive Of All Taxes</div>
+              </div>
 
               <button
                 className="procced-btn"
