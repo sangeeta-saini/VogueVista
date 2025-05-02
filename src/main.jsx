@@ -1,4 +1,5 @@
 import { StrictMode } from "react";
+import "./main.css";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { DataProvider } from "./components/DataContext.jsx";
@@ -20,7 +21,6 @@ import Products from "./components/FilterProducts/Products.jsx";
 
 import Address from "./components/Address/Address.jsx";
 import Banner from "./components/Banner/Banner.jsx";
-// import  WishlistProvider  from './pages/Wishlist/WishlistContext.jsx';
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -28,23 +28,25 @@ createRoot(document.getElementById("root")).render(
       <DataProvider>
         {/* <WishlistProvider> */}
         <Navbar></Navbar>
-        <Routes>
-          <Route path="/orders" element={<Orders />}></Route>
-          <Route
-            path="/productdescription"
-            element={<ProductDescription />}
-          ></Route>
-          <Route path="/productcard" element={<ProductCard />}></Route>
-          <Route path="/beautysection" element={<BeautySection />}></Route>
-          <Route path="/profile" element={<Profile />}></Route>
-          <Route path="/wishlist" element={<WishList />}></Route>
-          <Route path="/cart" element={<Cart />}></Route>
-          <Route path="/signup" element={<Signup />}></Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/products" element={<Products />}></Route>
-          <Route path="/address" element={<Address />}></Route>
-          <Route path="/" element={<Banner />}></Route>
-        </Routes>
+        <div className="routes">
+          <Routes>
+            <Route path="/orders" element={<Orders />}></Route>
+            <Route
+              path="/productdescription"
+              element={<ProductDescription />}
+            ></Route>
+            <Route path="/productcard" element={<ProductCard />}></Route>
+            <Route path="/beautysection" element={<BeautySection />}></Route>
+            <Route path="/profile" element={<Profile />}></Route>
+            <Route path="/wishlist" element={<WishList />}></Route>
+            <Route path="/cart" element={<Cart />}></Route>
+            <Route path="/signup" element={<Signup />}></Route>
+            <Route path="/login" element={<Login />}></Route>
+            <Route path="/products" element={<Products />}></Route>
+            <Route path="/address" element={<Address />}></Route>
+            <Route path="/" element={<Banner />}></Route>
+          </Routes>
+        </div>
         {/* </WishlistProvider>, */}
       </DataProvider>
     </BrowserRouter>

@@ -41,24 +41,6 @@ function Profile() {
     }
   };
 
-  // useEffect(() => {
-  //   const fetchProfile = async () => {
-  //     try {
-  //       const res = await axios.get("http://localhost:8080/detail/profile"); //{ withCredentials: true }
-  //       setProfile(res.data);
-  //     } catch (err) {
-  //       console.error("Error fetching profile:", err);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   fetchProfile();
-  // }, []);
-
-  // if (loading) return <p>Loading...</p>;
-  // if (!profile) return <p>Profile not found.</p>;
-
   return (
     <div className="profile-container-1">
       <div className="page-heading">Account</div>

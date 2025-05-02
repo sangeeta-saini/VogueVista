@@ -1,8 +1,8 @@
 import React from "react";
 import { useContext } from "react";
-import ProductList from "../ProductList.jsx";
+
 import FilterSection from "../Filters/FilterSection.jsx";
-import Sort from "../Sort.jsx";
+
 import { DataContext } from "../DataContext.jsx";
 import "./products.css";
 import AddToBagButton from "../../pages/Cart/AddToBagButton.jsx";

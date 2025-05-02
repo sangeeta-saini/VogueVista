@@ -4,10 +4,6 @@ import axios from "axios";
 const AddToBagButton = ({ userId, product }) => {
   const handleAddToBag = async () => {
     console.log("product:", product);
-    // if (!product || !product.productId) {
-    //   console.error('Invalid product:', product);
-    //   return;
-    // }
 
     try {
       const userId = localStorage.getItem("user_id");

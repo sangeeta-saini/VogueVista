@@ -1,36 +1,27 @@
-import React , { useState }  from 'react'
-import './filter.css'
+import React, { useState } from "react";
+import "./filter.css";
 
-function FilterContainer({title,items,handleToggle}) {
-
-  
-
-  
-
+function FilterContainer({ title, items = [], handleToggle }) {
   return (
-    
-      <div className='main-box'>
-      <h3 className='box-1'>{title}</h3>
-      <div className='box-1-data'>
-        {items.map((item) => (
-          <div key={item.value}>
+    <div className="main-box">
+      <h3 className="box-1">{title}</h3>
+      <div className="box-1-data">
+        {items.map(({ value, label, isSelected }, index) => (
+          <div key={value + `${index}`}>
             <input
               type="radio"
-              id={item.value}
-              name={item.value}
-              value={item.value}
-              checked={item.isSelected}
+              id={value}
+              name={title}
+              value={value}
+              checked={isSelected}
               onChange={handleToggle}
             />
-            <label htmlFor={item.value}>{item.display}</label>
+            <label htmlFor={value}>{label}</label>
           </div>
-        )) }
-       
+        ))}
       </div>
     </div>
-  
-    
-  )
+  );
 }
 
-export default FilterContainer
+export default FilterContainer;

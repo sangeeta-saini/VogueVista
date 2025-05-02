@@ -20,7 +20,7 @@ const BagPage = () => {
     } catch (err) {
       console.error("Error fetching wishlist:", err);
     } finally {
-      setLoading(false); // ✅ This is missing
+      setLoading(false);
     }
   };
 
@@ -83,30 +83,7 @@ const BagPage = () => {
                       quantity={res.quantity}
                       onChange={(newQty) => updateQty(res._id, newQty)}
                     />
-
-                    {/* <div className="quentity-btn">
-                      <button
-                        onClick={() =>
-                          updateQty(res.productId, res.quantity - 1)
-                        }
-                        className="cart-minus"
-                      >
-                        −
-                      </button>
-                      <span>{res.quantity}</span>
-                      <button
-                        onClick={() =>
-                          updateQty(res.productId, res.quantity + 1)
-                        }
-                        className="cart-plus"
-                      >
-                        +
-                      </button>
-                    </div> */}
                   </div>
-                  {/* <div>
-                    <p>₹{(res.price * res.quantity).toFixed(2)}</p>
-                  </div> */}
                 </div>
               ))}
             </div>
@@ -136,21 +113,3 @@ const BagPage = () => {
 };
 
 export default BagPage;
-
-// const [bagItems, setBagItems] = useState([]);
-// ;
-
-// const fetchBag = async () => {
-//   try {
-//     const res = await axios.get(`http://localhost:8080/bag/cart`);
-//     setBagItems(res.data.items || []);
-//   } catch (err) {
-//     console.error('Error fetching bag:', err);
-//   } finally {
-//     setLoading(false);
-//   }
-// };
-
-// useEffect(() => {
-//   fetchBag();
-// }, []);

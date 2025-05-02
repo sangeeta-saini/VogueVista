@@ -1,6 +1,7 @@
 .profile-container-1 {
   min-height: 600px;
   max-width: 850px;
+  margin: auto;
   background-color: white;
   /* margin: 50px 300px; */
   position: absolute;
@@ -34,14 +35,14 @@
 }
 
 .orders {
-  padding: 30px 30px;
+  padding: 20px 20px;
   height: 100px;
-  width: 145px;
+  width: 130px;
   font-size: 15px;
   border-bottom: 1px solid #d4d5d9;
 
-  /* display: flex;
-    justify-content: center; */
+  display: flex;
+  align-items: center;
 }
 
 .profile-container {
@@ -72,7 +73,7 @@
 }
 
 .profile-containter-4 {
-  height: 540px;
+  height: 480px;
   padding: 5px 20px;
 }
 
@@ -111,7 +112,7 @@
   width: 195px;
   display: flex;
   justify-content: center;
-  border: 1px solid rgb(128, 127, 127);
+  border: 1px solid rgb(223, 223, 223);
   border-radius: 3px;
 }
 
@@ -140,7 +141,6 @@
   }
 
   .profile-container {
-    padding: 42px 130px;
     border: 1px solid #d4d4d9;
   }
 }

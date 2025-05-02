@@ -81,22 +81,3 @@ const OrdersPage = () => {
 };
 
 export default OrdersPage;
-
-// useEffect(() => {
-//   const fetchOrders = async () => {
-//     try {
-//       const res = await fetch("http://localhost:8080/orders", {
-//         credentials: "include",
-//       });
-
-//       if (!res.ok) {
-//         throw new Error("Failed to fetch orders");
-//       }
-
-//       const data = await res.json();
-//       setOrders(data);
-//     } catch (err) {
-//       console.error(err);
-//       setError("Could not load orders. Please try again later.");
-//     }
-//   };

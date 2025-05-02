@@ -20,15 +20,10 @@ function Address() {
   const validateFields = () => {
     const newErrors = {};
 
-    // if (!name.trim()) newErrors.name = "Name is required";
-    // if (!mobile.match(/^\d{10}$/))
-    //   newErrors.mobile = "Enter a valid 10-digit mobile number";
     if (!pincode.match(/^[1-9][0-9]{5}$/))
       newErrors.pincode = "Enter a valid 6-digit pincode";
     if (!state.trim()) newErrors.state = "State is required";
     if (!address.trim()) newErrors.address = "Address is required";
-    // if (!street.trim()) newErrors.street = "Locality is required";
-    // if (!city.trim()) newErrors.city = "City is required";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;

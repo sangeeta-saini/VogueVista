@@ -6,8 +6,7 @@ export const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
   const [data, setData] = useState(null);
-  // const [loading, setLoading] = useState(true);
-  // const [error, setError] = useState(null);
+
   async function fetchData(query = {}) {
     const { category, price_range, brand } = query;
     let queryString = "";
@@ -37,7 +36,6 @@ export const DataProvider = ({ children }) => {
       <DataContext.Provider value={{ data, fetchData }}>
         {children}
       </DataContext.Provider>
-      {/* <div className="parent">{show}</div>; */}
     </>
   );
 };

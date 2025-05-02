@@ -1,92 +1,69 @@
 import React from "react";
 import "./filter.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 import FilterContainer from "./FilterContainer";
 
 function FilterSection({ fetchData }) {
-  const products = [{}];
+  const [categories, setCategories] = useState([]);
+  const [brands, setBrands] = useState([]);
 
-  const filter = [
-    {
-      id: "category",
-      name: "Category",
-      options: [
-        { value: "women", label: "Women" },
-        { value: "men", label: "Men" },
-        { value: "kids", label: "Kids" },
-        { value: "beauty", label: "Beauty" },
-      ],
-    },
+  useEffect(() => {
+    fetchBrands();
+    fetchCategories();
+  }, []);
 
-    {
-      id: "price",
-      name: "Price",
-      options: [
-        { value: "200-400", label: "200-400" },
-        { value: "400-600", label: "400-600" },
-        { value: "600-800", label: "600-800" },
-        { value: "800-1000", label: "800-1000" },
-      ],
-    },
+  const fetchCategories = async () => {
+    try {
+      const { data } = await axios.get("http://localhost:8080/categories");
+      console.log("Fetched Categories:", data.items);
+      setCategories(
+        data.items.map((item) => {
+          return {
+            ...item,
+            isSelected: false,
+          };
+        })
+      );
+    } catch (err) {
+      console.error("Error fetching categories:", err);
+    }
+  };
 
-    {
-      id: "color",
-      name: "Color",
-      options: [
-        { value: "red", label: "Red" },
-        { value: "blue", label: "Blue" },
-        { value: "pink", label: "Pink" },
-        { value: "green", label: "Green" },
-        { value: "black", label: "Black" },
-        { value: "white", label: "White" },
-        { value: "gold", label: "Gold" },
-        { value: "grey", label: "Grey" },
-      ],
-    },
-
-    {
-      id: "discount",
-      name: "Discounts",
-      options: [
-        { value: "20% and above", label: "20% and above" },
-        { value: "30% and above", label: "30% and above" },
-        { value: "40% and above", label: "40% and above" },
-        { value: "50% and above", label: "50% and above" },
-        { value: "60% and above", label: "60% and above" },
-        { value: "70% and above", label: "70% and above" },
-      ],
-    },
-  ];
-
-  const [selectedCategories, setSelectedCategories] = useState([
-    {
-      display: "Women",
-      value: "women",
-      isSelected: false,
-    },
-    {
-      display: "Men",
-      value: "men",
-      isSelected: false,
-    },
-    {
-      display: "Kids",
-      value: "kids",
-      isSelected: false,
-    },
-    {
-      display: "Beauty",
-      value: "beauty",
-      isSelected: false,
-    },
-  ]);
-  const categories = ["Women", "Men", "Kids", "Beauty"];
+  const fetchBrands = async () => {
+    try {
+      const { data } = await axios.get("http://localhost:8080/brands");
+      console.log("Fetched Brands:", data.items);
+      // const brandNames = data.items.map((brand) => );
+      setBrands(
+        data.items.map((item) => {
+          return {
+            ...item,
+            isSelected: false,
+          };
+        })
+      );
+    } catch (err) {
+      console.error("Error fetching brands", err);
+    }
+  };
+  useEffect(() => {}, []);
+  // {
+  //   id: "price",
+  //   name: "Price",
+  //   options: [
+  //     { value: "200-400", label: "200-400" },
+  //     { value: "400-600", label: "400-600" },
+  //     { value: "600-800", label: "600-800" },
+  //     { value: "800-1000", label: "800-1000" },
+  //   ],
+  // },
 
   const handleCategoryToggle = async (e) => {
     const value = e.target.value;
     console.log(value);
-    setSelectedCategories((prevCategories) =>
+    setCategories((prevCategories) =>
       prevCategories.map((category) => ({
         ...category,
         isSelected: category.value === value,
@@ -138,69 +115,21 @@ function FilterSection({ fetchData }) {
     await fetchData({ price_range: value });
   };
 
-  const [selectedBrand, setSelectedBrand] = useState([
-    {
-      display: "Red",
-      value: "red",
-      isSelected: false,
-    },
-    {
-      display: "Blue",
-      value: "blue",
-      isSelected: false,
-    },
-    {
-      display: "Pink",
-      value: "pink",
-      isSelected: false,
-    },
-    {
-      display: "Green",
-      value: "green",
-      isSelected: false,
-    },
-    {
-      display: "Black",
-      value: "black",
-      isSelected: false,
-    },
-    {
-      display: "White",
-      value: "white",
-      isSelected: false,
-    },
-    {
-      display: "Gold",
-      value: "gold",
-      isSelected: false,
-    },
-    {
-      display: "Gray",
-      value: "gray",
-      isSelected: false,
-    },
-  ]);
-
-  const colors = [
-    "Red",
-    "Blue",
-    "Pink",
-    "Green",
-    "Black",
-    "White",
-    "Gold",
-    "Grey",
-  ];
-
-  const handleBrandToggle = (e) => {
+  const handleBrandToggle = async (e) => {
     const value = e.target.value;
+
     console.log(value);
-    setSelectedBrand((prevBrand) =>
+    setBrands((prevBrand) =>
       prevBrand.map((brand) => ({
         ...brand,
         isSelected: brand.value === value,
       }))
     );
+    let brandName = value
+      .split("-")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+    await fetchData({ brand: brandName });
   };
 
   return (
@@ -212,7 +141,7 @@ function FilterSection({ fetchData }) {
         </div>
         <FilterContainer
           title="Category"
-          items={selectedCategories}
+          items={Array.isArray(categories) ? categories : []}
           handleToggle={handleCategoryToggle}
         />
         <FilterContainer
@@ -222,7 +151,7 @@ function FilterSection({ fetchData }) {
         />
         <FilterContainer
           title="Brand"
-          items={selectedBrand}
+          items={Array.isArray(brands) ? brands : []}
           handleToggle={handleBrandToggle}
         />
       </div>

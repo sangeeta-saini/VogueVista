@@ -1,6 +1,7 @@
 .container {
-  height: 560px;
+  height: 500px;
   width: 500px;
+  margin: auto;
   display: block;
   align-items: center;
   background-color: rgb(242, 243, 243);
@@ -8,19 +9,19 @@
   top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-family: PP Object sans, sans-serif;
 }
 
 .login {
   font-size: 30px;
   display: flex;
   justify-content: center;
-  margin: 20px;
+  margin: 10px;
   /* padding-top: 15px; */
 }
 
 .input-container {
-  margin: 20px 30px 30px 30px;
+  max-width: 400px;
+  margin: auto;
 }
 
 .name {
@@ -29,13 +30,14 @@
 }
 
 .login-head {
-  margin: 10px 10px 10px 13px;
+  margin: 10px 0px 10px 10px;
 }
 
 .name-box {
-  padding-left: 20px;
+  padding-left: 10px;
   height: 40px;
-  width: 100%;
+  width: 97%;
+  margin: auto;
   border: none;
   border-radius: 5px;
 }
@@ -46,9 +48,9 @@
 }
 
 .email-box {
-  padding-left: 20px;
+  padding-left: 10px;
   height: 40px;
-  width: 100%;
+  width: 97%;
   border: none;
   border-radius: 5px;
 }
@@ -59,9 +61,9 @@
 }
 
 .password-box {
-  padding-left: 20px;
+  padding-left: 10px;
   height: 40px;
-  width: 100%;
+  width: 97%;
   border: none;
   border-radius: 5px;
 }

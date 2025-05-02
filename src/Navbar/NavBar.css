@@ -1,144 +1,151 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  
-  }
-  
-  .nav{
-    
-    height: 100px;
-    width: 100%;
-    background-color: rgb(234, 237, 237);
-    display: flex;
-    justify-content: space-around;
-    position: fixed;
-    right: 0;
-    top: 0;
-    left: 0;
-    z-index: 0;
-    cursor: pointer;
-    overflow: hidden;
-    flex-wrap: wrap;
-  }
-  
-  .logo{
-    height: 100px;
-    width: 120%;
-  
-  }
-  
-  .list-items{
-    display: flex;
-    gap: 40px;
-    font-size: 17px;
-    font-weight: bold;
-    list-style-type: none;
-    padding-top: 40px;
-  }
-  
-  a{
-    text-decoration: none;
-    color: black;
-  }
-  
-  .search-container{
-    position: relative;
-    
-  }
-  
-  .search-icon{
-    position: absolute;
-    height: 18px;
-    margin-top: 15px;
-    top: 50%;
-    left: 10px;
-    transform: translateY(-50%);
-    color: rgb(91, 88, 88);
-  
-  }
-  
-  .search-box{
-    height: 40px;
-    width: 900px;
-    border-radius: 4px;
-    border: 0.5px solid black;
-    margin-top: 30px;
-    padding-left: 40px;
-  }
-  
-  .container-2{
-    display: flex;
-    justify-content: space-around;
-    /* height: 80px;
-    width: 100px; */
-    gap: 35px;
-    
-  }
-  
-  .sign-up{
-    display: flex;
-    font-size: 20px;
-    padding-top: 42px;
-    
-  }
-  
-  
-  .user{
-    padding-top: 40px;
-    height: 27px;
-    width: 27px;
-  }
-  
-  .list-icon{
-    padding-top: 40px;
-    height: 30px;
-    width: 30px;
-  }
-  
-  .bag{
-    padding-top: 40px;
-    height: 30px;
-    width: 30px;
-  }
-  
-  
-  
-  
-  /* For screens up to 768px wide */
-/* @media (max-width: 768px) {
+* {
+  margin: 0;
+  padding: 0;
+  /* margin: auto; */
+}
+
+.nav-container {
+  max-width: 1200px;
+}
+
+.nav {
+  height: 100px;
+  width: 100%;
+  margin: auto;
+  gap: 16px;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(234, 237, 237);
+  position: fixed;
+  top: 0;
+  cursor: pointer;
+}
+
+.nav-logo {
+  width: 6%;
+}
+
+.logo {
+  height: 100px;
+  width: 120%;
+}
+
+.list-items {
+  /* display: flex; */
+  font-size: 17px;
+  width: auto;
+  font-weight: 600;
+  list-style-type: none;
+  margin: 0px 20px;
+  padding-top: 40px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.seach-container-1 {
+  flex: 1;
+}
+
+.search-container {
+  position: relative;
+}
+
+.mob-search {
+  width: 100%;
+  min-height: 40px;
+}
+.search-icon {
+  position: absolute;
+  height: 18px;
+  margin-top: 13px;
+  padding: 12px 0px;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: rgb(91, 88, 88);
+}
+
+.search-box {
+  height: 40px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 0.5px solid black;
+  margin-top: 30px;
+  padding-left: 40px;
+}
+
+.container-2 {
+  display: flex;
+  justify-content: space-around;
+  width: auto;
+  gap: 35px;
+  font-weight: 500;
+  margin-right: 10px;
+}
+
+.sign-up {
+  display: flex;
+  font-size: 20px;
+  margin-top: 38px;
+}
+
+.user {
+  padding-top: 40px;
+  height: 27px;
+  width: 27px;
+}
+
+.list-icon {
+  padding-top: 40px;
+  height: 30px;
+  width: 30px;
+}
+
+.bag {
+  padding-top: 40px;
+  height: 30px;
+  width: 30px;
+}
+
+@media (max-width: 768px) {
   .nav {
-    flex-direction: column;
+    display: flex;
     align-items: center;
     height: auto;
-    padding: 10px 0;
   }
 
   .list-items {
-    flex-direction: column;
-    gap: 20px;
-    padding-top: 20px;
+    display: none;
   }
 
   .search-box {
     order: 3; /* move search below on small screens */
-    /* width: 100%;
+    width: 100%;
     margin-top: 10px;
   }
 
   .container-2 {
-    flex-direction: column;
+    display: flex;
     gap: 20px;
     align-items: center;
   }
 
-  .sign-up, .user, .list-icon, .bag {
+  .sign-up {
+    display: none;
+  }
+  .user,
+  .list-icon,
+  .bag {
     padding-top: 20px;
   }
 }
 
-/* For screens up to 480px wide */
-/* @media (max-width: 480px) {
+/* For screens up to 480px wide  */
+@media (max-width: 480px) {
   .search-box {
     width: 100%;
   }
@@ -153,8 +160,10 @@
     font-size: 16px;
   }
 
-  .user, .list-icon, .bag {
-    height: 24px;
-    width: 24px;
+  .user,
+  .list-icon,
+  .bag {
+    height: 20px;
+    width: 20px;
   }
-} */ */ */
+}
