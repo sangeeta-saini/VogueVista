@@ -16,6 +16,7 @@ function FilterContainer({ title, items = [], handleToggle }) {
               checked={isSelected}
               onChange={handleToggle}
             />
+
             <label htmlFor={value}>{label}</label>
           </div>
         ))}

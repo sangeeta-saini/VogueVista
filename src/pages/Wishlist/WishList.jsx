@@ -81,11 +81,8 @@ const WishlistPage = () => {
                 alt={item.name}
               />
               <h3 className="wish-title">{item.name}</h3>
-              <p className="wish-price">₹{item.price}</p>
-              <button
-                className="wish-move"
-                onClick={() => handleAddToBag(item)}
-              >
+              <p className="wish-price">₹{item.price.toFixed(2)}</p>
+              <button className="add-bag" onClick={() => handleAddToBag(item)}>
                 Move To Bag
               </button>
             </div>

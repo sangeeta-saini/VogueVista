@@ -1,6 +1,8 @@
 .filter-container {
   flex: 0 0 280px;
-  max-width: 280px;
+  max-width: calc(100vh - 120px - 8px);
+  overflow: auto;
+
   margin-top: 8px;
   background-color: rgb(247, 247, 247);
 }
@@ -13,12 +15,14 @@
   text-transform: capitalize;
   padding: 20px 10px 5px 10px;
   border-right: 1px solid hsl(0, 1%, 84%);
+  border-left: 1px solid hsl(0, 1%, 84%);
   border-top: 1px solid hsl(0, 1%, 84%);
 }
 
 .main-box {
   border-bottom: 1px solid hsl(0, 1%, 84%);
   border-right: 1px solid hsl(0, 1%, 84%);
+  border-left: 1px solid hsl(0, 1%, 84%);
   padding: 10px;
 }
 
@@ -43,6 +47,11 @@ label {
 input[type="radio"] {
   width: 15px;
   height: 15px;
+  cursor: pointer;
+}
+
+.clear-all {
+  color: rgb(36, 36, 245);
   cursor: pointer;
 }
 

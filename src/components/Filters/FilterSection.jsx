@@ -9,6 +9,12 @@ function FilterSection({ fetchData }) {
   const [categories, setCategories] = useState([]);
   const [brands, setBrands] = useState([]);
 
+  // const [filters, setFilters] = useState({
+  //   category: "",
+  //   priceRange: "",
+  //   brand: "",
+  // });
+
   useEffect(() => {
     fetchBrands();
     fetchCategories();
@@ -75,33 +81,26 @@ function FilterSection({ fetchData }) {
 
   const [selectedPrices, setSelectedPrices] = useState([
     {
-      display: "200-400",
-      value: "200-400",
+      label: "1000-3000",
+      value: "1000-3000",
       isSelected: false,
     },
     {
-      display: "400-600",
-      value: "400-600",
+      label: "3000-6000",
+      value: "3000-6000",
       isSelected: false,
     },
     {
-      display: "600-800",
-      value: "600-800",
+      label: "6000-9000",
+      value: "6000-9000",
       isSelected: false,
     },
     {
-      display: "800-1000",
-      value: "800-1000",
+      label: "9000-10,000",
+      value: "9000-10,000",
       isSelected: false,
     },
   ]);
-
-  const price = [
-    { id: "p2", label: "200-400", value: "200-400" },
-    { id: "p4", label: "400-600", value: "400-600" },
-    { id: "p6", label: "600-800", value: "600-800" },
-    { id: "p8", label: "800-1000", value: "800-1000" },
-  ];
 
   const handlePriceToggle = async (e) => {
     const value = e.target.value;
@@ -112,9 +111,9 @@ function FilterSection({ fetchData }) {
         isSelected: price.value === value,
       }))
     );
-    await fetchData({ price_range: value });
+    await fetchData({ price: price });
   };
-
+  // await fetchData({ price_range: value });
   const handleBrandToggle = async (e) => {
     const value = e.target.value;
 
@@ -132,12 +131,39 @@ function FilterSection({ fetchData }) {
     await fetchData({ brand: brandName });
   };
 
+  const handleClearAll = async () => {
+    setCategories((prevCategories) =>
+      prevCategories.map((category) => ({
+        ...category,
+        isSelected: false,
+      }))
+    );
+
+    setSelectedPrices((prevPrices) =>
+      prevPrices.map((price) => ({
+        ...price,
+        isSelected: false,
+      }))
+    );
+
+    setBrands((prevBrand) =>
+      prevBrand.map((brand) => ({
+        ...brand,
+        isSelected: false,
+      }))
+    );
+
+    await fetchData({});
+  };
+
   return (
     <div>
       <div className="filter-container">
         <div className="heading">
           <h3>FILTERS</h3>
-          <h3>CLEAR ALL</h3>
+          <h3 className="clear-all" onClick={() => handleClearAll()}>
+            CLEAR ALL
+          </h3>
         </div>
         <FilterContainer
           title="Category"

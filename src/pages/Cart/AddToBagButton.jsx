@@ -1,7 +1,10 @@
 import React from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 const AddToBagButton = ({ userId, product }) => {
+  const notify = () => toast("Product is added to Bag");
+
   const handleAddToBag = async () => {
     console.log("product:", product);
 
@@ -11,7 +14,7 @@ const AddToBagButton = ({ userId, product }) => {
       await axios.post(
         `http://localhost:8080/cart/`,
         {
-          Id: product.Id,
+          productId: product._id,
           title: product.title,
           price: product.price,
           image: product.images,
@@ -23,16 +26,19 @@ const AddToBagButton = ({ userId, product }) => {
           },
         }
       );
-      alert(`${product.name} added to bag!`);
+      notify();
     } catch (err) {
       console.error("Error adding to bag:", err);
     }
   };
 
   return (
-    <button onClick={handleAddToBag} className="wish-move">
-      Add to Bag
-    </button>
+    <>
+      <ToastContainer position="top-center" type="success" theme="dark" />
+      <button onClick={handleAddToBag} className="add-bag">
+        Add To Bag
+      </button>
+    </>
   );
 };
 

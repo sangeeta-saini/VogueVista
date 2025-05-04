@@ -1,40 +1,66 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios';
-function BeautySection() {
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "./BeautySection.css";
+import AddToBagButton from "../../pages/Cart/AddToBagButton.jsx";
+import WishlistButton from "../../pages/Wishlist/WishListButton.jsx";
+import { useNavigate } from "react-router-dom";
 
-const[BeautyItems , setBeauty] = useState([]);
+function BeautySection({ userId }) {
+  const [BeautyItems, setBeauty] = useState([]);
 
+  const navigate = useNavigate();
 
-const fetchBeauty = async () =>{
-  try {
-    const res = await axios.post("http://localhost:8080/grate/migrate");
-    setBeauty(res.data.items || []);
-  } catch (error) {
-    console.log('Error fetching wishlist:', error);
-  }
-};
+  const handleNavigate = (productId) => {
+    navigate(`/product/${productId}`);
+  };
 
-useEffect(() => {
-  fetchBeauty();
-}, []);
+  const fetchBeauty = async () => {
+    try {
+      const res = await axios.get(
+        "http://localhost:8080/products?category=beauty"
+      );
+      setBeauty(res.data.items || []);
+    } catch (error) {
+      console.log("Error fetching beauty products:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchBeauty();
+  }, []);
 
   return (
-    <div className="beauty-container">
+    <section>
+      <div className="beauty-container">
+        <div className="parent">
+          {Array.isArray(BeautyItems) &&
+            BeautyItems.length > 0 &&
+            BeautyItems.map((res, index) => (
+              <div key={index} className="all-cards">
+                <div className="wishlist-icon">
+                  <WishlistButton userId={userId} product={res} />
+                </div>
 
-        <div className="beauty-items">
-          {BeautyItems.map((item) => (
-            <div key={item.productId} className="beauty-item">
-              
-              <img className="beauty-img" src={item.image} alt={item.name} />
-              <h3 className='beauty-title'>{item.name}</h3>
-              <p className='beauty-price'>₹{item.price}</p>
-              
-            </div>
-          ))}
+                <img
+                  onClick={() => handleNavigate(res._id)}
+                  src={res.images?.[0]}
+                  className="card-img-top"
+                  alt={res.name || "Product image"}
+                />
+                <div className="card-body">
+                  <h5 className="card-title">{res.name}</h5>
+                  <p className="description">{res.description}</p>
+                  <p className="price-btn">₹{res.price.toFixed(2)}</p>
+                  <div className="btns">
+                    <AddToBagButton userId={userId} product={res} />
+                  </div>
+                </div>
+              </div>
+            ))}
         </div>
-      
-    </div>
+      </div>
+    </section>
   );
 }
 
-export default BeautySection
+export default BeautySection;

@@ -7,8 +7,14 @@ import { DataContext } from "../DataContext.jsx";
 import "./products.css";
 import AddToBagButton from "../../pages/Cart/AddToBagButton.jsx";
 import WishlistButton from "../../pages/Wishlist/WishListButton.jsx";
+import { useNavigate } from "react-router-dom";
 
 const Products = ({ userId, product }) => {
+  const navigate = useNavigate();
+
+  const handleNavigate = (productId) => {
+    navigate(`/product/${productId}`);
+  };
   const { data, loading, error, fetchData } = useContext(DataContext);
 
   if (loading) return <p>Loading...</p>;
@@ -22,26 +28,38 @@ const Products = ({ userId, product }) => {
         <section>
           <div className="parent">
             {Array.isArray(data) ? (
-              data.map((res, index) => (
-                <div key={index} className="all-cards">
-                  <div className="wishlist-icon">
-                    <WishlistButton userId={userId} product={res} />
-                  </div>
-                  <img src={res.images[0]} className="card-img-top" alt="..." />
-                  <div className="card-body">
-                    <h5 className="card-title">{res.title}</h5>
-                    <p className="description">{res.description}</p>
-                    <div className="btns">
-                      <a href="#" className="price-btn">
-                        ₹{res.price}
-                      </a>
-                      <div>
+              data.length > 0 ? (
+                data.map((res, index) => (
+                  <div key={index} className="all-cards">
+                    <div className="wishlist-icon">
+                      <WishlistButton userId={userId} product={res} />
+                    </div>
+
+                    <img
+                      onClick={() => handleNavigate(res._id)}
+                      src={res.images[0]}
+                      className="card-img-top"
+                      alt="..."
+                    />
+                    <div className="card-body">
+                      <h5 className="card-title">{res.name}</h5>
+                      <p className="description">{res.description}</p>
+                      <p className="price-btn">₹{res.price.toFixed(2)}</p>
+                      <div className="btns">
                         <AddToBagButton userId={userId} product={res} />
                       </div>
                     </div>
                   </div>
+                ))
+              ) : (
+                <div>
+                  <img
+                    className="no-data"
+                    src="./assets/nodata.png"
+                    alt="No Data Found"
+                  />
                 </div>
-              ))
+              )
             ) : (
               <p>Loading...</p>
             )}

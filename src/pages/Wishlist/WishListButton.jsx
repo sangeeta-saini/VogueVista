@@ -41,9 +41,9 @@ const WishlistButton = ({ userId, product }) => {
       title={isWishlisted ? "Remove from Wishlist" : "Add to Wishlist"}
     >
       {isWishlisted ? (
-        <img src="./assets/wishlist.svg" alt="" />
+        <img src="./assets/wishlist.svg" alt=" wishlist-icon" />
       ) : (
-        <img src="./assets/wishlist.svg" alt="" />
+        <img src="./assets/wishlist.svg" alt="wishlist-icon" />
       )}
     </div>
   );

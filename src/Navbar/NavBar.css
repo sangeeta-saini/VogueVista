@@ -5,20 +5,28 @@
 }
 
 .nav-container {
-  max-width: 1200px;
+  width: 100%;
+  background-color: rgb(234, 237, 237);
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  z-index: 10;
+  cursor: pointer;
+  top: 0; 
 }
 
 .nav {
-  height: 100px;
+  max-width: 1400px;
+   height: 100px;
   width: 100%;
-  margin: auto;
+  /* margin: auto; */
   gap: 16px;
   display: flex;
   justify-content: center;
-  background-color: rgb(234, 237, 237);
-  position: fixed;
-  top: 0;
-  cursor: pointer;
+  
+  
+  */
 }
 
 .nav-logo {

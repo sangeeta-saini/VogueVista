@@ -32,7 +32,7 @@ createRoot(document.getElementById("root")).render(
           <Routes>
             <Route path="/orders" element={<Orders />}></Route>
             <Route
-              path="/productdescription"
+              path="/product/:product_id"
               element={<ProductDescription />}
             ></Route>
             <Route path="/productcard" element={<ProductCard />}></Route>

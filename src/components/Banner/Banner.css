@@ -8,8 +8,9 @@
 }
 
 .banner-img {
-  max-width: 1400px;
-  margin: auto;
+  max-width: 1200px;
+  /* margin: auto;
+  margin-left: 0px; */
 
   height: 600px;
 }
