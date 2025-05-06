@@ -10,6 +10,7 @@ const BagPage = () => {
   const [address, setAddress] = useState(null);
   const [paymentMethod, setPaymentMethod] = useState("Cash on Delivery");
   const [orderPlaced, setOrderPlaced] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
 
   const fetchBag = async () => {
     try {
@@ -71,32 +72,27 @@ const BagPage = () => {
       return;
     }
 
+    const shippingAddressString = `${address.name}, ${address.typeOfAddress}, ${address.address}, ${address.street}, ${address.city} - ${address.pincode}, ${address.state}, Mobile: ${address.mobile}`;
+
     try {
       const orderPayload = {
-        userId,
         items: bagItems.map((item) => ({
           productId: item.productId || item._id,
           name: item.name,
           price: item.price,
           quantity: item.quantity,
         })),
-        shippingAddress: {
-          name: address.name,
-          typeOfAddress: address.typeOfAddress,
-          address: address.address,
-          street: address.street,
-          city: address.city,
-          state: address.state,
-          pincode: address.pincode,
-          mobile: address.mobile,
-        },
+        shippingAddress: shippingAddressString,
         paymentMethod,
       };
 
-      await axios.post("http://localhost:8080/place", orderPayload);
+      await axios.post("http://localhost:8080/place/", orderPayload, {
+        headers: { user_id: userId },
+      });
+
+      setShowPopup(true);
       setOrderPlaced(true);
-      alert("Order placed successfully!");
-      setBagItems([]); // Clear frontend bag
+      // Optionally clear bag: setBagItems([]);
     } catch (err) {
       console.error("Error placing order:", err);
       alert("Failed to place order.");
@@ -162,10 +158,10 @@ const BagPage = () => {
               </div>
             )}
 
-            <div className="mb-4">
-              <label className="block mb-1 font-medium">Payment Method</label>
+            <div className="payment-container">
+              <label className="payment-head">Payment Method:</label>
               <select
-                className="w-full border p-2"
+                className="payment-mode"
                 value={paymentMethod}
                 onChange={(e) => setPaymentMethod(e.target.value)}
               >
@@ -186,6 +182,19 @@ const BagPage = () => {
 
             <button className="procced-btn" onClick={handlePlaceOrder}>
               Place Order
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* ✅ Success Popup */}
+      {showPopup && (
+        <div className="popup-overlay">
+          <div className="popup-box">
+            <h2>Order Placed Successfully!</h2>
+            <p>Thank you for your purchase.</p>
+            <button className="popup-close" onClick={() => setShowPopup(false)}>
+              OK
             </button>
           </div>
         </div>

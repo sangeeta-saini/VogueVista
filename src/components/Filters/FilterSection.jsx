@@ -157,7 +157,7 @@ function FilterSection({ fetchData }) {
   };
 
   return (
-    <div>
+    <div className="filter-box">
       <div className="filter-container">
         <div className="heading">
           <h3>FILTERS</h3>

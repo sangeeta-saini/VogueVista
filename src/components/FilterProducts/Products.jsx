@@ -25,7 +25,7 @@ const Products = ({ userId, product }) => {
       <div className="products-Container">
         <FilterSection fetchData={fetchData} />
 
-        <section>
+        <section className="card-box">
           <div className="parent">
             {Array.isArray(data) ? (
               data.length > 0 ? (

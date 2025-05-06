@@ -10,7 +10,7 @@ import Navbar from "./Navbar/Navbar.jsx";
 import Profile from "./pages/Profile/Profile.jsx";
 import Orders from "./components/Orders/Orders.jsx";
 import ProductDescription from "./components/Product/ProductDescription.jsx";
-import PlaceOrder from "./components/PlaceOrder/PlaceOrder.jsx";
+
 import BeautySection from "./pages/BeautySection/BeautySection.jsx";
 
 import WishList from "./pages/Wishlist/WishList.jsx";
@@ -35,7 +35,7 @@ createRoot(document.getElementById("root")).render(
               path="/product/:product_id"
               element={<ProductDescription />}
             ></Route>
-            <Route path="/placeorder" element={<PlaceOrder />}></Route>
+
             <Route path="/beautysection" element={<BeautySection />}></Route>
             <Route path="/profile" element={<Profile />}></Route>
             <Route path="/wishlist" element={<WishList />}></Route>

@@ -4,11 +4,77 @@
   margin-top: 120px;
   height: 100%;
   width: 100%;
-  margin-left: 20px;
+  margin-left: 10px;
   background-color: rgb(255, 255, 255);
 }
 
+.card-box {
+  height: 100vh;
+  overflow: auto;
+}
+
+.parent {
+  height: 400px;
+  width: 100%;
+  display: flex;
+
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 30px;
+  margin-left: 40px;
+  margin-top: 20px;
+  /* overflow: hidden; */
+}
+
+.all-cards {
+  height: 380px;
+  width: 300px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 2vh;
+  font-weight: 600;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(222, 222, 222);
+}
+
+.wishlist-icon {
+  display: flex;
+  justify-content: right;
+  align-items: right;
+  padding: 5px 8px 0 0;
+}
+
+.card-img-top {
+  height: 190px;
+  width: 100%;
+}
+
+.card-title {
+  font-size: 19px;
+
+  margin: 10px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.description {
+  font-size: 17px;
+  margin: 10px;
+  color: rgb(86, 86, 86);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.price-btn {
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 7px 7px 7px 10px;
+}
 .no-data {
-  height: 100%;
   width: 100%;
 }
