@@ -2,24 +2,24 @@ import "./Cart.css";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import QuantityInput from "./QuantityInput";
+import { useNavigate } from "react-router-dom";
+
 const BagPage = () => {
   const [bagItems, setBagItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [address, setAddress] = useState(null);
+  const [paymentMethod, setPaymentMethod] = useState("Cash on Delivery");
+  const [orderPlaced, setOrderPlaced] = useState(false);
 
-  // Fetch wishlist items from backend
   const fetchBag = async () => {
     try {
       const userId = localStorage.getItem("user_id");
-
       const res = await axios.get("http://localhost:8080/cart/", {
-        headers: {
-          user_id: userId,
-        },
+        headers: { user_id: userId },
       });
       setBagItems(res.data.items || []);
     } catch (err) {
-      console.error("Error fetching wishlist:", err);
+      console.error("Error fetching bag:", err);
     } finally {
       setLoading(false);
     }
@@ -41,16 +41,11 @@ const BagPage = () => {
     if (newQty < 1) return;
     try {
       const userId = localStorage.getItem("user_id");
-
       await axios.put(
         `http://localhost:8080/cart/${productId}`,
+        { quantity: newQty },
         {
-          quantity: newQty,
-        },
-        {
-          headers: {
-            user_id: userId,
-          },
+          headers: { user_id: userId },
         }
       );
       setBagItems((prev) =>
@@ -68,11 +63,50 @@ const BagPage = () => {
     fetchAddress();
   }, []);
 
+  const handlePlaceOrder = async () => {
+    const userId = localStorage.getItem("user_id");
+
+    if (!userId || !address || !address.address?.trim()) {
+      alert("Missing user or address info");
+      return;
+    }
+
+    try {
+      const orderPayload = {
+        userId,
+        items: bagItems.map((item) => ({
+          productId: item.productId || item._id,
+          name: item.name,
+          price: item.price,
+          quantity: item.quantity,
+        })),
+        shippingAddress: {
+          name: address.name,
+          typeOfAddress: address.typeOfAddress,
+          address: address.address,
+          street: address.street,
+          city: address.city,
+          state: address.state,
+          pincode: address.pincode,
+          mobile: address.mobile,
+        },
+        paymentMethod,
+      };
+
+      await axios.post("http://localhost:8080/place", orderPayload);
+      setOrderPlaced(true);
+      alert("Order placed successfully!");
+      setBagItems([]); // Clear frontend bag
+    } catch (err) {
+      console.error("Error placing order:", err);
+      alert("Failed to place order.");
+    }
+  };
+
   if (loading) return <div>Loading your bag…</div>;
 
-  // Cart total
   const total = bagItems.reduce(
-    (sum, res) => sum + res.price * res.quantity,
+    (sum, item) => sum + item.price * item.quantity,
     0
   );
 
@@ -83,68 +117,78 @@ const BagPage = () => {
       {bagItems.length === 0 ? (
         <p>Your bag is empty.</p>
       ) : (
-        <>
-          <div className="cart-section">
-            <div className="cart-items">
-              {bagItems.map((res, index) => (
-                <div key={index} className="cart-item">
-                  <img className="cart-img" src={res.images[0]} />
-                  <div>
-                    <h2 className="cart-name">{res.name}</h2>
-                    <h2 className="cart-description">{res.description}</h2>
-                    <p className="cart-price">₹{res.price.toFixed(2)}</p>
+        <div className="cart-section">
+          <div className="cart-items">
+            {bagItems.map((item, index) => (
+              <div key={index} className="cart-item">
+                <img
+                  className="cart-img"
+                  src={item.images[0]}
+                  alt={item.name}
+                />
+                <div>
+                  <h2 className="cart-name">{item.name}</h2>
+                  <h2 className="cart-description">{item.description}</h2>
+                  <p className="cart-price">₹{item.price.toFixed(2)}</p>
 
-                    <QuantityInput
-                      quantity={res.quantity}
-                      onChange={(newQty) => updateQty(res._id, newQty)}
-                    />
-                  </div>
+                  <QuantityInput
+                    quantity={item.quantity}
+                    onChange={(newQty) => updateQty(item._id, newQty)}
+                  />
                 </div>
-              ))}
-            </div>
-
-            <div className="payment">
-              {address && (
-                <div className="address-display">
-                  <p className="price">Shipping To:</p>
-                  <div className="address-box">
-                    <div className="saved-add">
-                      <div className="address-name">{address.name}</div>
-                      <div className="address-type">
-                        {" "}
-                        {address.typeOfAddress}
-                      </div>
-                    </div>
-                    <div className="address-detail">
-                      {address.address}, {address.street} <br />
-                      {address.city} - {address.pincode}
-                      <br />
-                      {address.state}
-                      <br />
-                      Mobile: {address.mobile}
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              <p className="price">Price Details</p>
-
-              <div className="cart-total">
-                <div className="cart-mrp">
-                  Total MRP <span className="rate"> ₹{total.toFixed(1)}</span>
-                </div>
-                <div className="tax">Inclusive Of All Taxes</div>
               </div>
-
-              <button
-                className="procced-btn"
-                onClick={() => alert("Proceeding to checkout…")}
-              >
-                Proceed to Checkout
-              </button>
-            </div>
+            ))}
           </div>
-        </>
+
+          <div className="payment">
+            {address && (
+              <div className="address-display">
+                <p className="price">Shipping To:</p>
+                <div className="address-box">
+                  <div className="saved-add">
+                    <div className="address-name">{address.name}</div>
+                    <div className="address-type">{address.typeOfAddress}</div>
+                  </div>
+                  <div className="address-detail">
+                    {address.address}, {address.street}
+                    <br />
+                    {address.city} - {address.pincode}
+                    <br />
+                    {address.state}
+                    <br />
+                    Mobile: {address.mobile}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            <div className="mb-4">
+              <label className="block mb-1 font-medium">Payment Method</label>
+              <select
+                className="w-full border p-2"
+                value={paymentMethod}
+                onChange={(e) => setPaymentMethod(e.target.value)}
+              >
+                <option>Cash on Delivery</option>
+                <option>UPI</option>
+                <option>Credit Card</option>
+              </select>
+            </div>
+
+            <p className="price">Price Details</p>
+
+            <div className="cart-total">
+              <div className="cart-mrp">
+                Total MRP <span className="rate"> ₹{total.toFixed(1)}</span>
+              </div>
+              <div className="tax">Inclusive Of All Taxes</div>
+            </div>
+
+            <button className="procced-btn" onClick={handlePlaceOrder}>
+              Place Order
+            </button>
+          </div>
+        </div>
       )}
     </div>
   );

@@ -1,21 +1,7 @@
-
- import ProductList from './ProductCard/ProductCard';
-import './App.css'
-import Navbar from './Navbar/Navbar'
-
-
+import "./App.css";
 
 function App() {
- 
-  
-
-  return (
-    <>
-   
-    {/* <Navbar />
-     <ProductList /> */}
-    </>
-  )
+  return <></>;
 }
 
-export default App
+export default App;
