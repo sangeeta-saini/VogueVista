@@ -19,7 +19,7 @@ import Signup from "./pages/Login/Signup.jsx";
 import Login from "./pages/Login/Login.jsx";
 import Products from "./components/FilterProducts/Products.jsx";
 
-import Address from "./components/Address/Address.jsx";
+// import Address from "./components/Address/Address.jsx";
 import Banner from "./components/Banner/Banner.jsx";
 
 createRoot(document.getElementById("root")).render(
@@ -43,7 +43,7 @@ createRoot(document.getElementById("root")).render(
             <Route path="/signup" element={<Signup />}></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/products" element={<Products />}></Route>
-            <Route path="/address" element={<Address />}></Route>
+            {/* <Route path="/address" element={<Address />}></Route> */}
             <Route path="/" element={<Banner />}></Route>
           </Routes>
         </div>

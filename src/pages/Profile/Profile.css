@@ -1,5 +1,5 @@
 .profile-container-1 {
-  min-height: 600px;
+  height: 600px;
   max-width: 850px;
   margin: auto;
   background-color: white;
@@ -45,9 +45,17 @@
   align-items: center;
 }
 
+.profile-button {
+  border: none;
+  background-color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
 .profile-container {
   border: 1px solid #d4d5d9;
-  height: 520px;
+  height: 590px;
   width: 500px;
 
   margin: 10px 0px;
@@ -73,14 +81,14 @@
 }
 
 .profile-containter-4 {
-  height: 480px;
-  padding: 5px 20px;
+  height: 530px;
+  padding: 0px 20px;
 }
 
 .edit-title {
   line-height: 10px;
   font-size: 16px;
-  padding: 6px;
+  padding: 6px 0px;
   margin-left: 25px;
   font-weight: 600;
 }
@@ -103,6 +111,13 @@
 
 .gender-label {
   padding: 5px;
+}
+.gender-radio {
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-left: 5px;
 }
 
 .gender-edit {
@@ -129,6 +144,170 @@
   border-radius: 5px;
   color: white;
   font-size: 20px;
+}
+
+/* .address-container {
+  height: 660px;
+  width: 500px;
+  display: block;
+  align-items: center;
+  background-color: rgb(246, 246, 246);
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+} */
+
+.address {
+  margin: 5px 5px 5px 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #d4d5d9;
+  font-size: 25px;
+  font-weight: 600;
+}
+.address-container-2 {
+  background-color: white;
+  height: 140px;
+  width: 92%;
+  margin: 10px 20px;
+  border-radius: 5px;
+}
+
+.add-name {
+  padding: 8px;
+  margin-left: 10px;
+  font-weight: 600;
+}
+
+.add-input {
+  padding-left: 10px;
+  margin-left: 10px;
+  line-height: 25px;
+  width: 95%;
+  border: 1px solid rgb(225, 224, 224);
+  border-radius: 5px;
+}
+
+.add-container-3 {
+  height: 380px;
+  background-color: white;
+  margin: 0px 10px;
+  border-radius: 5px;
+}
+
+.address-container-4 {
+  display: flex;
+  justify-content: space-around;
+  margin: 10px;
+}
+
+.add-state {
+  padding: 7px;
+  font-weight: 600;
+}
+
+.add-pin {
+  line-height: 24px;
+  width: 190px;
+  padding-left: 8px;
+  border: 1px solid rgb(225, 224, 224);
+  border-radius: 5px;
+  font-weight: 600;
+}
+
+.add {
+  padding: 10px 10px 10px 15px;
+  font-weight: 600;
+}
+
+.add-container-5 {
+  display: flex;
+
+  margin: 5px;
+}
+
+.add-home {
+  padding-right: 10px;
+  margin-left: 10px;
+}
+.add-radio {
+  margin-right: 10px;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-btn {
+  line-height: 35px;
+  width: 210px;
+  margin: 5px 5px 5px 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  background-color: #ff3f6c;
+  border: none;
+  border-radius: 5px;
+}
+
+.error-message {
+  color: red;
+  background-color: #ffe6e6;
+  padding: 10px;
+  border: 1px solid red;
+  border-radius: 4px;
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+.input-error {
+  color: red;
+  font-size: 13px;
+  margin-top: 4px;
+  margin-left: 15px;
+}
+li {
+  list-style-type: none;
+}
+.address-box {
+  border: 1px solid rgb(225, 224, 224);
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
+.saved-addresses {
+  margin: 10px 40px 40px 40px;
+}
+
+.saved-head {
+  padding: 5px;
+  font-weight: 400;
+}
+
+.saved-add {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 7px;
+}
+
+.address-name {
+  font-size: 20px;
+  color: rgb(18, 18, 18);
+}
+
+.address-type {
+  background-color: rgb(221, 221, 221);
+  width: 50px;
+  padding: 2px 3px 3px 10px;
+  border-radius: 5px;
+}
+
+.address-detail {
+  font-weight: 400;
+  color: rgb(86, 86, 86);
+  /* margin-bottom: 10px; */
 }
 
 @media only screen and (max-width: 780px) {
