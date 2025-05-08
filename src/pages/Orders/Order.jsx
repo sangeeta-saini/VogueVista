@@ -32,63 +32,83 @@ const OrdersPage = () => {
   if (error) return <p>{error}</p>;
   if (orders.length === 0) return <p>No orders found.</p>;
 
+  // const total = bagItems.reduce(
+  //   (sum, item) => sum + item.price * item.quantity,
+  //   0
+  // );
+
   return (
     <div className="orders-container">
       <h2 className="orders-head">Your Orders</h2>
       <div className="orders-container-2">
         {orders.map((order) => (
           <div key={order._id}>
-            <div className="order-details">
-              <h3 className="order-id">
-                <strong>Order ID:</strong> {order._id}
-              </h3>
-              <div className="order-id">
-                <strong>Status:</strong> {order.status}
-              </div>
-              <div className="order-id">
-                <strong>Payment:</strong> {order.paymentMethod}
-              </div>
-              <div className="order-id">
-                <strong>Order Date:</strong>{" "}
-                {new Date(order.orderDate).toLocaleDateString()}
-              </div>
-              <div>
-                <div className="order-id">
-                  <strong> Shipping To:</strong> {order.shippingAddress}
+            <div className="order-container-3">
+              <div className="order-details">
+                <div className="order-box-1">
+                  <div className="order-status">
+                    {order.status.charAt(0).toUpperCase() +
+                      order.status.slice(1)}
+                  </div>
+                  <h3 className="order-id">
+                    <strong>Order ID #</strong> {order._id}
+                  </h3>
+                </div>
+                <div className="order-box-2">
+                  <div className="order-payment">
+                    <strong>Payment Mode</strong> {order.paymentMethod}
+                  </div>
+                  <div className="order-date">
+                    <strong>Placed On </strong>{" "}
+                    {new Date(order.orderDate).toLocaleDateString("en-GB", {
+                      day: "2-digit",
+                      month: "short",
+                      year: "numeric",
+                    })}
+                  </div>
+                </div>
+                <div>
+                  <div className="order-shipping">
+                    <strong className="shipping-head"> Shipping To</strong>
+                    <div>{order.shippingAddress}</div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <h4 className="order-item-head">Items:</h4>
-            <div className="order-item-box-1">
-              <div className="order-item-box">
-                {Array.isArray(order.items) ? (
-                  order.items.length > 0 ? (
-                    order.items.map((item, index) => (
-                      <div key={index} className="all-orders">
-                        <img
-                          className="order-img"
-                          src={item.images && item.images[0]}
-                          alt={item.name}
-                        />
-                        <div>
+              <h4 className="order-item-head">Items:</h4>
+              <div className="order-item-box-1">
+                <div className="order-item-box">
+                  {Array.isArray(order.items) ? (
+                    order.items.length > 0 ? (
+                      order.items.map((item, index) => (
+                        <div key={index} className="all-orders">
+                          <img
+                            className="order-img"
+                            src={item.images && item.images[0]}
+                            alt={item.name}
+                          />
                           <div>
                             <strong className="order-name">{item.name}</strong>
                           </div>
-                          <div className="order-price">₹{item.price}</div>
+                          <div className="order-price">
+                            ₹{item.price.toFixed(2)}
+                          </div>
                           <div className="order-quentity">
                             {" "}
-                            Quentity:{item.quantity}
+                            Quantity {item.quantity}
                           </div>
                         </div>
-                      </div>
-                    ))
+                      ))
+                    ) : (
+                      <div>No items in this order.</div>
+                    )
                   ) : (
-                    <div>No items in this order.</div>
-                  )
-                ) : (
-                  <div>Invalid items data.</div>
-                )}
+                    <div>Invalid items data.</div>
+                  )}
+                </div>
               </div>
+              {/* <div className="cart-mrp">
+                Total MRP <span className="rate"> ₹{total.toFixed(1)}</span>
+              </div> */}
             </div>
           </div>
         ))}

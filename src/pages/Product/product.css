@@ -28,17 +28,17 @@
 }
 
 .product-description {
-  font-size: 17px;
+  font-size: 16px;
   padding: 10px 10px 10px 20px;
   font-weight: 100;
-  color: black;
+  color: grey;
   font-weight: 400;
 }
 
 .rating {
   border: 1px solid #cdcfd0;
   width: 150px;
-  color: black;
+  color: grey;
   font-weight: 400;
   padding: 10px;
 }
@@ -46,5 +46,62 @@
 .product-rate {
   padding-left: 20px;
   padding-bottom: 10px;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.product-rating-box {
+  display: flex;
+  padding-left: 20px;
+  padding-bottom: 10px;
   font-weight: 400;
+  color: grey;
+}
+
+.rating-img {
+  height: 25px;
+  padding-right: 8px;
+}
+
+.product-rating {
+  padding-left: 20px;
+  padding-bottom: 10px;
+  font-weight: 400;
+  color: grey;
+}
+
+.wishlist-btn {
+  height: 40px;
+  width: 48%;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+  border-radius: 5px;
+}
+
+.wish-icon-2 {
+  padding-top: 8px;
+  padding-right: 8px;
+}
+
+.wish-heading {
+  padding-top: 8px;
+  padding-right: 8px;
+}
+
+.bag-btn {
+  width: 48%;
+  margin-top: 0px;
+  border-radius: 5px;
+}
+
+.add-btn {
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+.add-wish-btn {
+  display: flex;
+  justify-content: space-between;
 }

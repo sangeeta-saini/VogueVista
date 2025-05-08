@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 
-const AddToBagButton = ({ userId, product }) => {
+const AddToBagButton = ({ userId, product, customClass = " " }) => {
   const notify = () => toast("Product is added to Bag");
 
   const handleAddToBag = async () => {
@@ -35,7 +35,7 @@ const AddToBagButton = ({ userId, product }) => {
   return (
     <>
       <ToastContainer position="top-center" type="success" theme="dark" />
-      <button onClick={handleAddToBag} className="add-bag">
+      <button onClick={handleAddToBag} className={`add-bag ${customClass}`}>
         Add To Bag
       </button>
     </>

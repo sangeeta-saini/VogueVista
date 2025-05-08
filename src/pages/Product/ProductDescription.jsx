@@ -4,6 +4,7 @@ import axios from "axios";
 import "./product.css";
 import AddToBagButton from "../Cart/AddToBagButton.jsx";
 import WishlistButton from "../Wishlist/WishListButton.jsx";
+import Rating from "./../../assets/rating.png";
 
 function ProductDescription({ userId }) {
   const { product_id } = useParams();
@@ -40,15 +41,30 @@ function ProductDescription({ userId }) {
         <h1 className="product-title">{product.name}</h1>
         <div className="product-description">{product.description}</div>
         <div className="product-rate">₹ {product.price.toFixed(2)}</div>
-        <div className="product-rate">Rating: {product.rating}</div>
-        <div className="product-rate">Brand: {product.brand}</div>
-        <div className="product-rate">Category: {product.categories}</div>
-        <div className="product-rate">Stock: {product.stock}</div>
-        <div className="wishlist-icon">
-          <WishlistButton userId={userId} product={product} />
+        <div className="product-rating-box">
+          <div>
+            <img className="rating-img" src={Rating} alt="" />
+          </div>
+          <div>{product.rating}</div>
         </div>
-        <div className="btns">
-          <AddToBagButton userId={userId} product={product} />
+        <div className="product-rating">Brand {product.brand}</div>
+        <div className="product-rating">Category {product.categories}</div>
+
+        <div className="add-wish-btn">
+          <div className="wishlist-btn">
+            <div className="wish-icon-2">
+              <WishlistButton userId={userId} product={product} />
+            </div>
+
+            <div className="wish-heading">WISHLIST</div>
+          </div>
+          <div className="bag-btn">
+            <AddToBagButton
+              userId={userId}
+              product={product}
+              customClass="add-btn"
+            />
+          </div>
         </div>
       </div>
     </div>
