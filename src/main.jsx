@@ -8,7 +8,7 @@ import App from "./App.jsx";
 import Navbar from "./Navbar/Navbar.jsx";
 
 import Profile from "./pages/Profile/Profile.jsx";
-import Orders from "./components/Orders/Orders.jsx";
+import Order from "./components/Orders/Order.jsx";
 import ProductDescription from "./components/Product/ProductDescription.jsx";
 
 import BeautySection from "./pages/BeautySection/BeautySection.jsx";
@@ -30,7 +30,7 @@ createRoot(document.getElementById("root")).render(
         <Navbar></Navbar>
         <div className="routes">
           <Routes>
-            <Route path="/orders" element={<Orders />}></Route>
+            <Route path="/order" element={<Order />}></Route>
             <Route
               path="/product/:product_id"
               element={<ProductDescription />}

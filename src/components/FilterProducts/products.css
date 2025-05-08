@@ -76,6 +76,13 @@
   font-weight: 600;
   margin: 7px 7px 7px 10px;
 }
+
+.nodata-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
 .no-data {
+  height: 200px;
   width: 100%;
 }

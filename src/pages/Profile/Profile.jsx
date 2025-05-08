@@ -314,7 +314,7 @@ function Profile() {
             </button>
           </div>
           <div className="orders">
-            <a href="/orders">Orders</a>
+            <a href="/order">Order</a>
           </div>
           <div className="orders">
             <a href="/wishlist">Wishlist</a>

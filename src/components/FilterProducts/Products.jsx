@@ -52,7 +52,7 @@ const Products = ({ userId, product }) => {
                   </div>
                 ))
               ) : (
-                <div>
+                <div className="nodata-img">
                   <img
                     className="no-data"
                     src="./assets/nodata.png"

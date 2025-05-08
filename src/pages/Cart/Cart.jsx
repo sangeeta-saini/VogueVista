@@ -11,6 +11,11 @@ const BagPage = () => {
   const [paymentMethod, setPaymentMethod] = useState("Cash on Delivery");
   const [orderPlaced, setOrderPlaced] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+  const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    navigate("/order");
+  };
 
   const fetchBag = async () => {
     try {
@@ -193,7 +198,13 @@ const BagPage = () => {
           <div className="popup-box">
             <h2>Order Placed Successfully!</h2>
             <p>Thank you for your purchase.</p>
-            <button className="popup-close" onClick={() => setShowPopup(false)}>
+            <button
+              className="popup-close"
+              onClick={() => {
+                setShowPopup(false);
+                handleNavigate();
+              }}
+            >
               OK
             </button>
           </div>
