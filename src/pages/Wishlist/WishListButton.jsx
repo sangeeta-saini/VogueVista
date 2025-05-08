@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import WishlistSVG from "./../../assets/wishlist.svg";
 const WishlistButton = ({ userId, product }) => {
   const [isWishlisted, setIsWishlisted] = useState(false);
 
@@ -41,9 +41,9 @@ const WishlistButton = ({ userId, product }) => {
       title={isWishlisted ? "Remove from Wishlist" : "Add to Wishlist"}
     >
       {isWishlisted ? (
-        <img src="./assets/wishlist.svg" alt=" wishlist-icon" />
+        <img src={WishlistSVG} alt=" wishlist-icon" />
       ) : (
-        <img src="./assets/wishlist.svg" alt="wishlist-icon" />
+        <img src={WishlistSVG} alt="wishlist-icon" />
       )}
     </div>
   );

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./product.css";
-import AddToBagButton from "../../pages/Cart/AddToBagButton.jsx";
-import WishlistButton from "../../pages/Wishlist/WishListButton.jsx";
+import AddToBagButton from "../Cart/AddToBagButton.jsx";
+import WishlistButton from "../Wishlist/WishListButton.jsx";
 
 function ProductDescription({ userId }) {
   const { product_id } = useParams();

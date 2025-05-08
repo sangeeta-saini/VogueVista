@@ -1,9 +1,9 @@
 import React from "react";
 import { useContext } from "react";
 
-import FilterSection from "../Filters/FilterSection.jsx";
+import FilterSection from "../../components/Filters/FilterSection.jsx";
 
-import { DataContext } from "../DataContext.jsx";
+import { DataContext } from "../../components/DataContext.jsx";
 import "./products.css";
 import AddToBagButton from "../../pages/Cart/AddToBagButton.jsx";
 import WishlistButton from "../../pages/Wishlist/WishListButton.jsx";
