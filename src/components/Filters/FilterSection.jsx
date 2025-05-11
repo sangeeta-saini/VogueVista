@@ -9,12 +9,6 @@ function FilterSection({ fetchData }) {
   const [categories, setCategories] = useState([]);
   const [brands, setBrands] = useState([]);
 
-  // const [filters, setFilters] = useState({
-  //   category: "",
-  //   priceRange: "",
-  //   brand: "",
-  // });
-
   useEffect(() => {
     fetchBrands();
     fetchCategories();
@@ -55,16 +49,6 @@ function FilterSection({ fetchData }) {
     }
   };
   useEffect(() => {}, []);
-  // {
-  //   id: "price",
-  //   name: "Price",
-  //   options: [
-  //     { value: "200-400", label: "200-400" },
-  //     { value: "400-600", label: "400-600" },
-  //     { value: "600-800", label: "600-800" },
-  //     { value: "800-1000", label: "800-1000" },
-  //   ],
-  // },
 
   const handleCategoryToggle = async (e) => {
     const value = e.target.value;
@@ -111,7 +95,7 @@ function FilterSection({ fetchData }) {
         isSelected: price.value === value,
       }))
     );
-    await fetchData({ price: price });
+    await fetchData({ price: value });
   };
   // await fetchData({ price_range: value });
   const handleBrandToggle = async (e) => {
