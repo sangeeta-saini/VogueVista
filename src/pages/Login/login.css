@@ -10,7 +10,6 @@
   top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-family: PP Object sans, sans-serif;
 }
 
 .input-container-2 {
@@ -28,4 +27,16 @@
 .error-msg {
   text-align: center;
   margin-top: 10px;
+}
+
+@media (max-width: 750px) {
+  .container {
+    max-width: 400px;
+    margin: auto;
+  }
+
+  .input-container {
+    max-width: 300px;
+    margin: auto;
+  }
 }
