@@ -80,8 +80,8 @@ function FilterSection({ fetchData }) {
       isSelected: false,
     },
     {
-      label: "9000-10,000",
-      value: "9000-10,000",
+      label: "10,000 and above",
+      value: "10,000-200000",
       isSelected: false,
     },
   ]);
@@ -95,7 +95,7 @@ function FilterSection({ fetchData }) {
         isSelected: price.value === value,
       }))
     );
-    await fetchData({ price: value });
+    await fetchData({ price_range: value });
   };
   // await fetchData({ price_range: value });
   const handleBrandToggle = async (e) => {
