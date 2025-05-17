@@ -4,6 +4,8 @@ import "./Profile.css";
 // import "./Address.css";
 import { useNavigate } from "react-router-dom";
 
+const API_BASE_URL = import.meta.env.VITE_API_URL;
+
 function Profile() {
   const [view, setView] = useState("profile"); // "profile" or "address"
 
@@ -36,7 +38,7 @@ function Profile() {
 
   const fetchAddresses = async () => {
     try {
-      const res = await axios.get(`http://localhost:8080/address/${userId}`);
+      const res = await axios.get(`${API_BASE_URL}/address/${userId}`);
       setAddresses(res.data);
       setShowForm(res.data.length === 0);
     } catch (err) {
@@ -57,7 +59,7 @@ function Profile() {
   const handleProfileSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8080/detail/profile", {
+      await axios.post(`${API_BASE_URL}/detail/profile`, {
         name,
         mobile,
         email,
@@ -77,7 +79,7 @@ function Profile() {
     if (!validateFields()) return;
 
     try {
-      await axios.post("http://localhost:8080/address/add", {
+      await axios.post(`${API_BASE_URL}/address/add`, {
         name,
         mobile,
         pincode,

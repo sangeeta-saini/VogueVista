@@ -6,6 +6,8 @@ import AddToBagButton from "../Cart/AddToBagButton.jsx";
 import WishlistButton from "../Wishlist/WishListButton.jsx";
 import Rating from "./../../assets/rating.png";
 
+const API_BASE_URL = import.meta.env.VITE_API_URL;
+
 function ProductDescription({ userId }) {
   const { product_id } = useParams();
   const [product, setProduct] = useState(null);
@@ -14,7 +16,7 @@ function ProductDescription({ userId }) {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/products/${product_id}`
+          `${API_BASE_URL}/products/${product_id}`
         );
         console.log("-----response", response);
         setProduct(response.data);

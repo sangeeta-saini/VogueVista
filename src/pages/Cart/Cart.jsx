@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import QuantityInput from "./QuantityInput";
 import { useNavigate } from "react-router-dom";
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 const BagPage = () => {
   const [bagItems, setBagItems] = useState([]);
@@ -20,7 +21,7 @@ const BagPage = () => {
   const fetchBag = async () => {
     try {
       const userId = localStorage.getItem("user_id");
-      const res = await axios.get("http://localhost:8080/cart/", {
+      const res = await axios.get(`${API_BASE_URL}/cart/`, {
         headers: { user_id: userId },
       });
       setBagItems(res.data.items || []);
@@ -34,7 +35,7 @@ const BagPage = () => {
   const fetchAddress = async () => {
     try {
       const userId = localStorage.getItem("user_id");
-      const res = await axios.get(`http://localhost:8080/address/${userId}`);
+      const res = await axios.get(`${API_BASE_URL}/address/${userId}`);
       if (res.data.length > 0) {
         setAddress(res.data[0]); // assuming first address is default
       }
@@ -48,7 +49,7 @@ const BagPage = () => {
     try {
       const userId = localStorage.getItem("user_id");
       await axios.put(
-        `http://localhost:8080/cart/${productId}`,
+        `${API_BASE_URL}/cart/${productId}`,
         { quantity: newQty },
         {
           headers: { user_id: userId },
@@ -91,7 +92,7 @@ const BagPage = () => {
         paymentMethod,
       };
 
-      await axios.post("http://localhost:8080/place/", orderPayload, {
+      await axios.post(`${API_BASE_URL}/place/`, orderPayload, {
         headers: { user_id: userId },
       });
 

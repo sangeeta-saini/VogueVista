@@ -3,6 +3,8 @@ import axios from "axios";
 import WishlistButton from "./WishListButton";
 import "./Wishlist.css";
 
+const API_BASE_URL = import.meta.env.VITE_API_URL;
+
 const WishlistPage = () => {
   const [wishlistItems, setWishlistItems] = useState([]);
 
@@ -11,7 +13,7 @@ const WishlistPage = () => {
     try {
       const userId = localStorage.getItem("user_id");
 
-      const res = await axios.get("http://localhost:8080/wishlist/", {
+      const res = await axios.get(`${API_BASE_URL}/wishlist/`, {
         headers: {
           user_id: userId,
         },
@@ -28,7 +30,7 @@ const WishlistPage = () => {
       const userId = localStorage.getItem("user_id");
 
       await axios.post(
-        "http://localhost:8080/cart",
+        `${API_BASE_URL}/cart`,
         {
           productId: item._id,
           name: item.name,
@@ -50,7 +52,7 @@ const WishlistPage = () => {
   // Remove item from wishlist
   const removeItem = async (productId) => {
     try {
-      await axios.delete(`http://localhost:8080/wishlist/${productId}`);
+      await axios.delete(`${API_BASE_URL}/wishlist/${productId}`);
       setWishlistItems((prevItems) =>
         prevItems.filter((item) => item.productId !== productId)
       );

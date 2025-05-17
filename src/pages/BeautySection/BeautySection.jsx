@@ -5,6 +5,8 @@ import AddToBagButton from "../../pages/Cart/AddToBagButton.jsx";
 import WishlistButton from "../../pages/Wishlist/WishListButton.jsx";
 import { useNavigate } from "react-router-dom";
 
+const API_BASE_URL = import.meta.env.VITE_API_URL;
+
 function BeautySection({ userId }) {
   const [BeautyItems, setBeauty] = useState([]);
 
@@ -16,9 +18,8 @@ function BeautySection({ userId }) {
 
   const fetchBeauty = async () => {
     try {
-      const res = await axios.get(
-        "http://localhost:8080/products?category=beauty"
-      );
+      const res = await axios.get(`${API_BASE_URL}/products?category=beauty`);
+
       setBeauty(res.data.items || []);
     } catch (error) {
       console.log("Error fetching beauty products:", error);

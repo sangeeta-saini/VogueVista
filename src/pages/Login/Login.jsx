@@ -3,6 +3,8 @@ import "./login.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+const API_BASE_URL = import.meta.env.VITE_API_URL;
+
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -14,7 +16,7 @@ function Login() {
     setError({}); // Reset errors before submission
 
     try {
-      const res = await axios.post("http://localhost:8080/user/login", {
+      const res = await axios.post(`${API_BASE_URL}/user/login`, {
         email,
         password,
       });

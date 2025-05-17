@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Orders.css";
 
+const API_BASE_URL = import.meta.env.VITE_API_URL;
+
 const OrdersPage = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -10,7 +12,7 @@ const OrdersPage = () => {
   const fetchOrders = async () => {
     try {
       const userId = localStorage.getItem("user_id");
-      const response = await axios.get("http://localhost:8080/order", {
+      const response = await axios.get(`${API_BASE_URL}/order`, {
         headers: { user_id: userId },
       });
       console.log("Orders response:", response.data);
