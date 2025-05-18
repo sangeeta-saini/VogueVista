@@ -2,7 +2,7 @@ import React from "react";
 import { createContext, useState, useEffect } from "react";
 import axios from "axios";
 
-const API_BASE_URL = import.meta.env.VITE_API_URL;
+const API_BASE_URL = import.meta.env.VITE_RAILWAY_API_URL;
 
 export const DataContext = createContext();
 

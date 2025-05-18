@@ -6,7 +6,7 @@ import AddToBagButton from "../Cart/AddToBagButton.jsx";
 import WishlistButton from "../Wishlist/WishListButton.jsx";
 import Rating from "./../../assets/rating.png";
 
-const API_BASE_URL = import.meta.env.VITE_API_URL;
+const API_BASE_URL = import.meta.env.VITE_RAILWAY_API_URL;
 
 function ProductDescription({ userId }) {
   const { product_id } = useParams();

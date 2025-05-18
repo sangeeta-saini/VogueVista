@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Orders.css";
 
-const API_BASE_URL = import.meta.env.VITE_API_URL;
+const API_BASE_URL = import.meta.env.VITE_RAILWAY_API_URL;
 
 const OrdersPage = () => {
   const [orders, setOrders] = useState([]);

@@ -3,7 +3,7 @@ import "./filter.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const API_BASE_URL = import.meta.env.VITE_API_URL;
+const API_BASE_URL = import.meta.env.VITE_RAILWAY_API_URL;
 
 import FilterContainer from "./FilterContainer";
 
@@ -18,16 +18,19 @@ function FilterSection({ fetchData }) {
 
   const fetchCategories = async () => {
     try {
+      console.log("----API_BASE_URL---", API_BASE_URL);
       const { data } = await axios.get(`${API_BASE_URL}/categories`);
       console.log("Fetched Categories:", data.items);
-      setCategories(
-        data.items.map((item) => {
-          return {
-            ...item,
-            isSelected: false,
-          };
-        })
-      );
+      if (data.items) {
+        setCategories(
+          data.items.map((item) => {
+            return {
+              ...item,
+              isSelected: false,
+            };
+          })
+        );
+      }
     } catch (err) {
       console.error("Error fetching categories:", err);
     }
