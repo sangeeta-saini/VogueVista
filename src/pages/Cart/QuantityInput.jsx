@@ -11,7 +11,7 @@ const QuantityInput = ({ quantity, onChange }) => {
   const handleChange = (e) => {
     const value = parseInt(e.target.value, 10);
 
-    if (!isNaN(value) && value > 0) {
+    if (!isNaN(value) && value >= 0) {
       setLocalQty(value);
       onChange(value);
     } else if (e.target.value === "") {
