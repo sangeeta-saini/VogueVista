@@ -69,7 +69,15 @@ const WishlistPage = () => {
     <div className="wishlist-container">
       <h2 className="wish-head">Your Wishlist</h2>
       {wishlistItems.length === 0 ? (
-        <p>Your wishlist is empty.</p>
+        <>
+          <div className="nodata-imgs">
+            <img
+              className="no-data"
+              src="/assets/nodata.png"
+              alt="No Data Found"
+            />
+          </div>
+        </>
       ) : (
         <div className="wishlist-items">
           {wishlistItems.map((item) => (

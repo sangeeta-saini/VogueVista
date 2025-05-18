@@ -23,7 +23,7 @@ function Navbar() {
         <div className="list">
           <ul className="list-items">
             <li>
-              <a href="/beautysection">BEAUTY</a>
+              <a href="/beauty-section">BEAUTY</a>
             </li>
           </ul>
         </div>

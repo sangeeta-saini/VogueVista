@@ -34,7 +34,7 @@ createRoot(document.getElementById("root")).render(
               path="/product/:product_id"
               element={<ProductDescription />}
             ></Route>
-            <Route path="/beautysection" element={<BeautySection />}></Route>
+            <Route path="/beauty-section" element={<BeautySection />}></Route>
             <Route path="/profile" element={<Profile />}></Route>
             <Route path="/signup" element={<Signup />}></Route>
             <Route path="/login" element={<Login />}></Route>

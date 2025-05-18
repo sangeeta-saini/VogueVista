@@ -76,3 +76,9 @@
   align-items: right;
   padding: 5px 8px 0 0;
 }
+
+.nodata-imgs {
+  position: absolute;
+  top: 50%;
+  left: 40%;
+}

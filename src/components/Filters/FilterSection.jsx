@@ -83,7 +83,7 @@ function FilterSection({ fetchData }) {
     },
     {
       label: "10,000 and above",
-      value: "10,000-200000",
+      value: "10000-200000",
       isSelected: false,
     },
   ]);

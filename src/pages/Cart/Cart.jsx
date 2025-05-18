@@ -117,7 +117,15 @@ const BagPage = () => {
       <h1 className="cart-head">Your Bag</h1>
 
       {bagItems.length === 0 ? (
-        <p>Your bag is empty.</p>
+        <>
+          <div className="nodata-imgs">
+            <img
+              className="no-data"
+              src="/assets/nodata.png"
+              alt="No Data Found"
+            />
+          </div>
+        </>
       ) : (
         <div className="cart-section">
           <div className="cart-items">
