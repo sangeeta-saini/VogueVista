@@ -10,6 +10,7 @@ const QuantityInput = ({ quantity, onChange }) => {
 
   const handleChange = (e) => {
     const value = parseInt(e.target.value, 10);
+
     if (!isNaN(value) && value > 0) {
       setLocalQty(value);
       onChange(value);
@@ -32,7 +33,7 @@ const QuantityInput = ({ quantity, onChange }) => {
   };
 
   const decrease = () => {
-    const newQty = localQty > 1 ? localQty - 1 : 0;
+    const newQty = localQty > 0 ? localQty - 1 : 0;
     setLocalQty(newQty);
     onChange(newQty);
   };
@@ -48,6 +49,7 @@ const QuantityInput = ({ quantity, onChange }) => {
         onChange={handleChange}
         onBlur={handleBlur}
         className="quantity-input"
+        min="0"
       />
       <button onClick={increase} className="cart-plus">
         +

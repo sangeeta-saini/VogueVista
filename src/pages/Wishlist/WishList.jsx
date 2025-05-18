@@ -12,7 +12,7 @@ const WishlistPage = () => {
   const fetchWishlist = async () => {
     try {
       const userId = localStorage.getItem("user_id");
-
+      console.log("----API_BASE_URL---", API_BASE_URL);
       const res = await axios.get(`${API_BASE_URL}/wishlist/`, {
         headers: {
           user_id: userId,
@@ -76,6 +76,7 @@ const WishlistPage = () => {
               src="/assets/nodata.png"
               alt="No Data Found"
             />
+            <p className="empty">Your wishlist is empty!</p>
           </div>
         </>
       ) : (

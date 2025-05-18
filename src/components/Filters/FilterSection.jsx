@@ -18,7 +18,6 @@ function FilterSection({ fetchData }) {
 
   const fetchCategories = async () => {
     try {
-      console.log("----API_BASE_URL---", API_BASE_URL);
       const { data } = await axios.get(`${API_BASE_URL}/categories`);
       console.log("Fetched Categories:", data.items);
       if (data.items) {

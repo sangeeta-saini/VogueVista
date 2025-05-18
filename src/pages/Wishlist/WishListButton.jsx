@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import WishlistSVG from "./../../assets/wishlist.svg";
+
+const API_BASE_URL = import.meta.env.VITE_RAILWAY_API_URL;
+
 const WishlistButton = ({ userId, product }) => {
   const [isWishlisted, setIsWishlisted] = useState(false);
 
@@ -9,14 +12,14 @@ const WishlistButton = ({ userId, product }) => {
       const userId = localStorage.getItem("user_id");
 
       if (isWishlisted) {
-        await axios.delete(`http://localhost:8080/wishlist/${product._id}`, {
+        await axios.delete(`${API_BASE_URL}/wishlist/${product._id}`, {
           headers: {
             user_id: userId,
           },
         });
       } else {
         await axios.post(
-          `http://localhost:8080/wishlist`,
+          `${API_BASE_URL}/wishlist`,
           {
             product_id: product._id,
             user_id: userId,

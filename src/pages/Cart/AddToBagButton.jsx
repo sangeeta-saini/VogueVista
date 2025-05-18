@@ -2,6 +2,8 @@ import React from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 
+const API_BASE_URL = import.meta.env.VITE_RAILWAY_API_URL;
+
 const AddToBagButton = ({ userId, product, customClass = " " }) => {
   const notify = () => toast("Product is added to Bag");
 
@@ -12,7 +14,7 @@ const AddToBagButton = ({ userId, product, customClass = " " }) => {
       const userId = localStorage.getItem("user_id");
 
       await axios.post(
-        `http://localhost:8080/cart/`,
+        `${API_BASE_URL}/cart/`,
         {
           productId: product._id,
           title: product.title,

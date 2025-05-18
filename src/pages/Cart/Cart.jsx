@@ -67,7 +67,11 @@ const BagPage = () => {
 
   useEffect(() => {
     fetchBag();
-    fetchAddress();
+
+    const userId = localStorage.getItem("user_id");
+    if (userId) {
+      fetchAddress();
+    }
   }, []);
 
   const handlePlaceOrder = async () => {
@@ -124,6 +128,7 @@ const BagPage = () => {
               src="/assets/nodata.png"
               alt="No Data Found"
             />
+            <p className="empty">Your bag is empty!</p>
           </div>
         </>
       ) : (
