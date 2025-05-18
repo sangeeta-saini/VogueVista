@@ -3,6 +3,8 @@ import "./filter.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+const API_BASE_URL = import.meta.env.VITE_API_URL;
+
 import FilterContainer from "./FilterContainer";
 
 function FilterSection({ fetchData }) {
@@ -16,7 +18,7 @@ function FilterSection({ fetchData }) {
 
   const fetchCategories = async () => {
     try {
-      const { data } = await axios.get("http://localhost:8080/categories");
+      const { data } = await axios.get(`${API_BASE_URL}/categories`);
       console.log("Fetched Categories:", data.items);
       setCategories(
         data.items.map((item) => {
@@ -33,7 +35,7 @@ function FilterSection({ fetchData }) {
 
   const fetchBrands = async () => {
     try {
-      const { data } = await axios.get("http://localhost:8080/brands");
+      const { data } = await axios.get(`${API_BASE_URL}/brands`);
       console.log("Fetched Brands:", data.items);
       // const brandNames = data.items.map((brand) => );
       setBrands(
