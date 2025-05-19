@@ -2,7 +2,7 @@
 
 VogueVista is a full-stack eCommerce web application designed for selling trendy fashion apparel and accessories. It features user authentication, shopping cart functionality, order placement, and more. Built with a modern MERN (MongoDB, Express, React, Node.js) stack.
 
-👉 **Live Demo:** [https://vogue-vista-production.up.railway.app]
+👉 **Live Demo:** [https://vogue-vista-store.netlify.app]
 
 ## 🚀 Features
 
