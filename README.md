@@ -1,12 +1,25 @@
-# React + Vite
+# 🛍️ VogueVista - eCommerce Fashion Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+VogueVista is a full-stack eCommerce web application designed for selling trendy fashion apparel and accessories. It features user authentication, shopping cart functionality, order placement, and more. Built with a modern MERN (MongoDB, Express, React, Node.js) stack.
 
-Currently, two official plugins are available:
+👉 **Live Demo:** [https://vogue-vista-store.netlify.app]
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- 🧾 User Signup/Login with secure authentication (Passport.js)
+- 👗 Browse and filter fashion products by categories
+- ❤️ Wishlist functionality to save favorite items
+- 🛒 Add to cart and update quantities
+- 📦 Place orders with shipping address and payment method
+- 💳 Multiple payment methods: Cash on Delivery, UPI
+- 🧾 View and manage past orders
+- ✨ Responsive design for mobile and desktop
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Tech Stack
+
+**Frontend:**
+- React.js
+- Axios
+- CSS
+
+
