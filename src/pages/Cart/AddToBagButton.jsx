@@ -1,18 +1,30 @@
 import React from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const API_BASE_URL = import.meta.env.VITE_RAILWAY_API_URL;
 
 const AddToBagButton = ({ userId, product, customClass = " " }) => {
+  const navigate = useNavigate();
+
   const notify = () => toast("Product is added to Bag");
+  const showSignUpToast = () => toast.error("Please sign up first");
 
   const handleAddToBag = async () => {
-    console.log("product:", product);
+    const userId = localStorage.getItem("user_id");
+
+    if (!userId) {
+      showSignUpToast();
+
+      // Wait a moment for the toast to show, then redirect
+      setTimeout(() => {
+        navigate("/signup");
+      }, 2000); // 2 seconds delay
+      return;
+    }
 
     try {
-      const userId = localStorage.getItem("user_id");
-
       await axios.post(
         `${API_BASE_URL}/cart/`,
         {
