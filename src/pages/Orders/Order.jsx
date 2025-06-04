@@ -32,20 +32,24 @@ const OrdersPage = () => {
 
   if (loading) return <p>Loading orders...</p>;
   if (error) return <p>{error}</p>;
-  // if (orders.length === 0) return <p>No orders found.</p>;
-
-  // const total = bagItems.reduce(
-  //   (sum, item) => sum + item.price * item.quantity,
-  //   0
-  // );
 
   return (
     <div className="orders-container">
       <h2 className="orders-head">Your Orders</h2>
-      <div className="orders-container-2">
-        {orders.map((order) => (
-          <div key={order._id}>
-            <div className="order-container-3">
+
+      {orders.length === 0 ? (
+        <div className="nodata-imgs">
+          <img
+            className="no-data"
+            src="/assets/nodata.png"
+            alt="No Data Found"
+          />
+          <p className="empty">No orders found!</p>
+        </div>
+      ) : (
+        <div className="orders-container-2">
+          {orders.map((order) => (
+            <div key={order._id} className="order-container-3">
               <div className="order-details">
                 <div className="order-box-1">
                   <div className="order-status">
@@ -58,10 +62,10 @@ const OrdersPage = () => {
                 </div>
                 <div className="order-box-2">
                   <div className="order-payment">
-                    <strong>Payment Mode</strong> {order.paymentMethod}
+                    <strong>Payment Mode:</strong> {order.paymentMethod}
                   </div>
                   <div className="order-date">
-                    <strong>Placed On </strong>{" "}
+                    <strong>Placed On:</strong>{" "}
                     {new Date(order.orderDate).toLocaleDateString("en-GB", {
                       day: "2-digit",
                       month: "short",
@@ -69,59 +73,43 @@ const OrdersPage = () => {
                     })}
                   </div>
                 </div>
-                <div>
-                  <div className="order-shipping">
-                    <strong className="shipping-head"> Shipping To</strong>
-                    <div>{order.shippingAddress}</div>
-                  </div>
+                <div className="order-shipping">
+                  <strong className="shipping-head">Shipping To:</strong>
+                  <div>{order.shippingAddress}</div>
                 </div>
               </div>
+
               <h4 className="order-item-head">Items:</h4>
               <div className="order-item-box-1">
                 <div className="order-item-box">
-                  {Array.isArray(order.items) ? (
-                    order.items.length > 0 ? (
-                      order.items.map((item, index) => (
-                        <div key={index} className="all-orders">
-                          <img
-                            className="order-img"
-                            src={item.images && item.images[0]}
-                            alt={item.name}
-                          />
-                          <div>
-                            <strong className="order-name">{item.name}</strong>
-                          </div>
-                          <div className="order-price">
-                            ₹{item.price.toFixed(2)}
-                          </div>
-                          <div className="order-quentity">
-                            {" "}
-                            Quantity {item.quantity}
-                          </div>
-                        </div>
-                      ))
-                    ) : (
-                      <div className="nodata-imgs">
+                  {Array.isArray(order.items) && order.items.length > 0 ? (
+                    order.items.map((item, index) => (
+                      <div key={index} className="all-orders">
                         <img
-                          className="no-data"
-                          src="/assets/nodata.png"
-                          alt="No Data Found"
+                          className="order-img"
+                          src={item.images && item.images[0]}
+                          alt={item.name}
                         />
-                        <p className="empty">No Orders Found!</p>
+                        <div>
+                          <strong className="order-name">{item.name}</strong>
+                        </div>
+                        <div className="order-price">
+                          ₹{item.price.toFixed(2)}
+                        </div>
+                        <div className="order-quentity">
+                          Quantity {item.quantity}
+                        </div>
                       </div>
-                    )
+                    ))
                   ) : (
-                    <div>Invalid items data.</div>
+                    <div>No items found in this order.</div>
                   )}
                 </div>
               </div>
-              {/* <div className="cart-mrp">
-                Total MRP <span className="rate"> ₹{total.toFixed(1)}</span>
-              </div> */}
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
