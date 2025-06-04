@@ -32,7 +32,7 @@ const OrdersPage = () => {
 
   if (loading) return <p>Loading orders...</p>;
   if (error) return <p>{error}</p>;
-  if (orders.length === 0) return <p>No orders found.</p>;
+  // if (orders.length === 0) return <p>No orders found.</p>;
 
   // const total = bagItems.reduce(
   //   (sum, item) => sum + item.price * item.quantity,
@@ -101,7 +101,14 @@ const OrdersPage = () => {
                         </div>
                       ))
                     ) : (
-                      <div>No items in this order.</div>
+                      <div className="nodata-imgs">
+                        <img
+                          className="no-data"
+                          src="/assets/nodata.png"
+                          alt="No Data Found"
+                        />
+                        <p className="empty">No Orders Found!</p>
+                      </div>
                     )
                   ) : (
                     <div>Invalid items data.</div>
